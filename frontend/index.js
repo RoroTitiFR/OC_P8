@@ -1,4 +1,5 @@
-import "./index.scss"
+import "./bulma.scss"
+import "./tailwind.scss"
 
 import $ from "jquery"
 

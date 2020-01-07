@@ -21,6 +21,9 @@ module.exports = {
                             ident: 'postcss',
                             plugins: [
                                 require('tailwindcss'),
+                                require("postcss-safe-important")({
+                                    paths: p => p.indexOf("tailwind") === -1
+                                }),
                                 require('autoprefixer'),
                             ],
                         },
