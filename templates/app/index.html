@@ -21,6 +21,7 @@
                 <div class="navbar-brand">
                     <a class="navbar-item">
                         <img src="{% static "logo_pur_beurre.png" %}" alt="Logo">
+                        <span style="margin-left: 10px">Pur Beurre</span>
                     </a>
                     <span class="navbar-burger burger" data-target="navbarMenuHeroC">
                         <span></span>
@@ -30,23 +31,32 @@
                 </div>
                 <div id="navbarMenuHeroC" class="navbar-menu">
                     <div class="navbar-end">
-                        <a class="navbar-item is-active">
-                            Home
-                        </a>
+                        <div class="navbar-item">
+                            <form class="is-marginless">
+                                <div class="field has-addons">
+                                    <div class="control is-expanded">
+                                        <input class="input" type="text" placeholder="Cherchez un produit...">
+                                    </div>
+                                    <div class="control">
+                                        <a class="button is-dark">
+                                            Rechercher
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
                         <a class="navbar-item">
-                            Examples
+                            <span class="icon">
+                                <i class="fas fa-user fa-2x"></i>
+                            </span>
                         </a>
+
                         <a class="navbar-item">
-                            Documentation
+                            <span class="icon">
+                                <i class="fas fa-sign-out-alt fa-2x"></i>
+                            </span>
                         </a>
-                        <span class="navbar-item">
-                            <a class="button is-inverted">
-                                <span class="icon">
-                                    <i class="fab fa-github"></i>
-                                </span>
-                                <span>Download</span>
-                            </a>
-                        </span>
                     </div>
                 </div>
             </div>
@@ -56,17 +66,72 @@
     <!-- Hero content: will be in the middle -->
     <div class="hero-body">
         <div class="container has-text-centered">
-            <h1 class="title">
-                Title
+            <h1 class="title is-1">
+                Du gras oui, mais de qualité !
             </h1>
             <h2 class="subtitle">
-                Subtitle
+                Trouvez un produit de substitition pour ceux que vous consommez tous les jours
             </h2>
+            <form class="m-10">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input class="input" type="text" placeholder="Cherchez un produit...">
+                    </div>
+                    <div class="control">
+                        <a class="button is-dark">
+                            Rechercher
+                        </a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </section>
 
-olol
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2 has-text-centered">Colette et Rémy</h2>
+
+        <h5 class="subtitle has-text-centered p-10 mb-48">
+            Pur Beurre est l'initiative de deux amoureux de la gastronomie française, Colette Tatou et Rémy, que vous avez déjà certainement
+            rencontrés dans notre excellent restaurant Ratatouille.
+        </h5>
+
+        <div class="columns is-centered is-multiline is-4">
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="title is-2 has-text-centered">Contactez-nous !</h2>
+
+        <div class="columns is-centered is-multiline">
+            <div class="column">
+            </div>
+
+            <div class="column"></div>
+
+            <div class="column">
+            </div>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

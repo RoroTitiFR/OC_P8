@@ -6,6 +6,7 @@ module.exports = {
     entry: {
         "index": "./index.js"
     },
+    devtool: 'source-map',
     plugins: [new MiniCssExtractPlugin()],
     module: {
         rules: [
@@ -14,6 +15,16 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     "css-loader",
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: [
+                                require('tailwindcss'),
+                                require('autoprefixer'),
+                            ],
+                        },
+                    },
                     {
                         loader: 'sass-loader',
                         options: {
