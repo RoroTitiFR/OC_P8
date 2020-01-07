@@ -1,5 +1,5 @@
 """
-ASGI config for django_pur_beurre project.
+ASGI config for pur_beurre project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_pur_beurre.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pur_beurre.settings')
 
 application = get_asgi_application()
