@@ -21,7 +21,7 @@
                 <div class="navbar-brand">
                     <a class="navbar-item">
                         <img src="{% static "logo_pur_beurre.png" %}" alt="Logo">
-                        <span style="margin-left: 10px">Pur Beurre</span>
+                        <span class="ml-5">Pur Beurre</span>
                     </a>
                     <span class="navbar-burger burger" data-target="navbarMenuHeroC">
                         <span></span>
@@ -97,24 +97,48 @@
             rencontrés dans notre excellent restaurant Ratatouille.
         </h5>
 
-        <div class="columns is-centered is-multiline is-4">
-            <div class="column">
+        <div class="columns is-centered is-multiline">
+            <div class="column is-flex is-5-desktop is-12-touch">
                 <div class="card">
-                    <div class="card-content">
+                    <div class="card-image p-4">
+                        <figure class="image is-4by3">
+                            <img class="object-contain" src="{% static "colette.png" %}" alt="">
+                        </figure>
+                    </div>
 
+                    <div class="card-content">
+                        <p class="title is-4">Colette</p>
+
+                        <p>
+                            Nous aimons tous manger, surtout en France ! Personnellement, une baguette fraîche, du bon fromage de chèvre et un bon vin
+                            rouge me suffisent amplement. Comme tout le monde, je fais mes courses au supermarché. Mais petit à petit je me suis
+                            rendue compte, surtout lorsque nous avons ouvert le restaurant, que je pouvais remplacer les produits aseptisés que
+                            j'avais l'habitude d'acheter par de bons produits du terroir Et souvent pour le même prix !
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <div class="column">
+            <div class="column is-flex is-5-desktop is-12-touch">
                 <div class="card">
+                    <div class="card-image p-4">
+                        <figure class="image is-4by3">
+                            <img class="object-contain" src="{% static "remy.png" %}" alt="">
+                        </figure>
+                    </div>
                     <div class="card-content">
+                        <p class="title is-4">Rémy</p>
 
+                        <p>
+                            Pour ma part je me rendais déjà dans bien des magasins car j'aime beaucoup me balader, surtout dans les caves et les
+                            cuisines. Je connaissais par coeur le contenu des boutiques bio (dont je raffole) ainsi que les ingrédients de tous les
+                            aliments vendus. Lorsque Colette m'a demandé si elle pouvait remplacer son Nutella matinal par un aliment plus sain, je
+                            savais tout de suite où le trouver. L'idée de Pur Beurre était née !
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <section class="section">
