@@ -1,5 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     mode: "production",
@@ -8,6 +10,9 @@ module.exports = {
     },
     devtool: 'source-map',
     plugins: [new MiniCssExtractPlugin()],
+    optimization: {
+        minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    },
     module: {
         rules: [
             {
@@ -24,7 +29,6 @@ module.exports = {
                                 require("postcss-safe-important")({
                                     paths: p => p.indexOf("tailwind") === -1
                                 }),
-                                require('autoprefixer'),
                             ],
                         },
                     },
@@ -51,5 +55,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "..", "assets")
+    },
+    externals: {
+        jquery: 'jQuery'
     }
 };
