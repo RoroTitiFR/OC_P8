@@ -1,0 +1,49 @@
+{% load static %}
+
+<header class="navbar is-fixed-top is-dark">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item">
+                <img src="{% static "logo_pur_beurre.png" %}" alt="Logo">
+                <h1 class="ml-4">Pur Beurre</h1>
+            </a>
+            <span class="navbar-burger burger" data-target="navbarMenuHeroC">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </div>
+        <div id="navbarMenuHeroC" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <form class="is-marginless" method="post" action="{% url "index" %}">
+                        {% csrf_token %}
+
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                {{ form.search_term }}
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button is-primary is-rounded">
+                                    Rechercher
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <a class="navbar-item">
+                    <span class="icon">
+                        <i class="fas fa-user fa-2x"></i>
+                    </span>
+                </a>
+
+                <a class="navbar-item">
+                    <span class="icon">
+                        <i class="fas fa-sign-out-alt fa-2x"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>

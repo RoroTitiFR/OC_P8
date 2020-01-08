@@ -17,7 +17,7 @@ def index(request):
     else:
         form = SearchForm()
 
-    return render(request, "app/index.html", {
+    return render(request, "app/home.html", {
         "form": form
     })
 
@@ -37,4 +37,9 @@ def results(request, search_term=""):
     r = requests.get(request_url)
     json = r.json()
 
-    return HttpResponse(json)
+    form = SearchForm()
+
+    return render(request, "app/search_results.html", {
+        "json": json,
+        "form": form
+    })
