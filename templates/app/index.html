@@ -36,15 +36,17 @@
                 <div id="navbarMenuHeroC" class="navbar-menu">
                     <div class="navbar-end">
                         <div class="navbar-item">
-                            <form class="is-marginless">
+                            <form class="is-marginless" method="post" action="{% url "index" %}">
+                                {% csrf_token %}
+
                                 <div class="field has-addons">
                                     <div class="control is-expanded">
-                                        <input class="input is-rounded" type="text" placeholder="Cherchez un produit...">
+                                        {{ form.search_term }}
                                     </div>
                                     <div class="control">
-                                        <a class="button is-primary is-rounded">
+                                        <button type="submit" class="button is-primary is-rounded">
                                             Rechercher
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -76,15 +78,17 @@
             <h2 class="subtitle">
                 Trouvez un produit de substitution pour ceux que vous consommez tous les jours
             </h2>
-            <form class="m-10">
+            <form class="m-10" method="post" action="{% url "index" %}">
+                {% csrf_token %}
+
                 <div class="field has-addons">
                     <div class="control is-expanded">
-                        <input class="input is-rounded" type="text" placeholder="Cherchez un produit...">
+                        {{ form.search_term }}
                     </div>
                     <div class="control">
-                        <a class="button is-primary is-rounded">
+                        <button type="submit" class="button is-primary is-rounded">
                             Rechercher
-                        </a>
+                        </button>
                     </div>
                 </div>
             </form>
