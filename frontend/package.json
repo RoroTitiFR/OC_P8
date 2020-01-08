@@ -1,4 +1,12 @@
 {
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "WTFPL",
+  "private": true,
+  "scripts": {
+    "build": "yarn webpack"
+  },
   "dependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
@@ -6,7 +14,6 @@
     "babel-loader": "^8.0.6",
     "bulma": "^0.8.0",
     "css-loader": "^3.4.1",
-    "cssnano": "^4.1.10",
     "jquery": "^3.4.1",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.0",
@@ -14,18 +21,10 @@
     "popper.js": "^1.16.0",
     "postcss-loader": "^3.0.0",
     "postcss-safe-important": "^1.2.0",
-    "precss": "^4.0.0",
     "sass-loader": "^8.0.0",
     "tailwindcss": "^1.1.4",
     "terser-webpack-plugin": "^2.3.1",
-    "webpack": "^4.41.5"
-  },
-  "name": "frontend",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "private": true,
-  "devDependencies": {
+    "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   }
 }
