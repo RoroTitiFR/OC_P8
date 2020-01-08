@@ -25,7 +25,7 @@
                 <div class="navbar-brand">
                     <a class="navbar-item">
                         <img src="{% static "logo_pur_beurre.png" %}" alt="Logo">
-                        <h1 class="ml-5">Pur Beurre</h1>
+                        <h1 class="ml-4">Pur Beurre</h1>
                     </a>
                     <span class="navbar-burger burger" data-target="navbarMenuHeroC">
                         <span></span>
@@ -39,10 +39,10 @@
                             <form class="is-marginless">
                                 <div class="field has-addons">
                                     <div class="control is-expanded">
-                                        <input class="input" type="text" placeholder="Cherchez un produit...">
+                                        <input class="input is-rounded" type="text" placeholder="Cherchez un produit...">
                                     </div>
                                     <div class="control">
-                                        <a class="button is-primary">
+                                        <a class="button is-primary is-rounded">
                                             Rechercher
                                         </a>
                                     </div>
@@ -79,10 +79,10 @@
             <form class="m-10">
                 <div class="field has-addons">
                     <div class="control is-expanded">
-                        <input class="input" type="text" placeholder="Cherchez un produit...">
+                        <input class="input is-rounded" type="text" placeholder="Cherchez un produit...">
                     </div>
                     <div class="control">
-                        <a class="button is-primary">
+                        <a class="button is-primary is-rounded">
                             Rechercher
                         </a>
                     </div>
@@ -150,19 +150,19 @@
     <div class="container">
         <h2 class="title is-2 has-text-centered">Contactez-nous !</h2>
 
-        <div class="tile is-ancestor p-8">
-            <div class="tile is-parent">
-                <article class="tile is-child notification is-primary is-flex flex-col items-center">
+        <div class="columns is-centered is-multiline">
+            <div class="column is-5-desktop is-12-touch">
+                <div class="notification is-primary is-flex flex-col items-center">
                     <figure class="image is-128x128 __phone has-background-white mb-8" style="mask-size: cover"></figure>
                     <p class="title is-3">01 00 00 00 00</p>
-                </article>
+                </div>
             </div>
 
-            <div class="tile is-parent">
-                <article class="tile is-child notification is-primary is-flex flex-col items-center">
+            <div class="column is-5-desktop is-12-touch">
+                <div class="notification is-primary is-flex flex-col items-center">
                     <figure class="image is-128x128 __enveloppe has-background-white mb-8" style="mask-size: cover"></figure>
                     <p class="title is-3">mail@mail.com</p>
-                </article>
+                </div>
             </div>
         </div>
     </div>
