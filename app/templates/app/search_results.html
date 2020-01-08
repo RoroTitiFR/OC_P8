@@ -1,5 +1,13 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-    {{ json }}
+    <section class="section">
+        <div class="container">
+            {% for product in json.products %}
+                {% if product.image_front_url %}
+                    <img src="{{ product.image_front_url }}"/>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}
