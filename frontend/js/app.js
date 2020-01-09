@@ -1,7 +1,3 @@
-// import "../scss/bulma.scss"
-// import "../scss/tailwind.scss"
-// import "../scss/animate.scss"
-
 import $ from "jquery"
 
 $(window).scroll(function () {

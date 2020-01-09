@@ -1,7 +1,5 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = {
@@ -17,18 +15,6 @@ module.exports = {
         new FixStyleOnlyEntriesPlugin(),
         new MiniCssExtractPlugin()
     ],
-    optimization: {
-        minimizer: [
-            new TerserJSPlugin({}),
-            new OptimizeCSSAssetsPlugin({
-                cssProcessorOptions: {
-                    map: {
-                        inline: false // set to false if you want CSS source maps
-                    }
-                }
-            })
-        ],
-    },
     module: {
         rules: [
             {
@@ -47,7 +33,6 @@ module.exports = {
                         loader: 'postcss-loader',
                         options: {
                             plugins: [
-                                require('postcss-import'),
                                 require("tailwindcss"),
                                 require("postcss-safe-important")({
                                     paths: p => p.indexOf("tailwind") === -1
