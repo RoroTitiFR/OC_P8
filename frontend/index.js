@@ -5,7 +5,7 @@ import $ from "jquery"
 
 $(window).scroll(function () {
     const navbar = $(".navbar");
-    navbar.toggleClass("__home_dark_navbar", $(this).scrollTop() > 0);
+    navbar.toggleClass("__home_dark_navbar shadow-xl", $(this).scrollTop() > 0);
 });
 
 $(document).ready(function () {

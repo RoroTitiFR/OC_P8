@@ -42,15 +42,8 @@ $colors: map-merge($colors, $addColors);
 @import "~bulma/bulma";
 
 .__home-hero {
-  background: url('/assets/home_background.jpg') center center;
+  background: linear-gradient(rgba($dark, 0.5), rgba($dark, 0.5)), url('/assets/home_background.jpg') center center;
   background-size: cover;
-}
-
-.__home-overlay {
-  background: rgba($dark, 0.5);
-  position: absolute;
-  width: 100%;
-  height: 100%;
 }
 
 .navbar {
