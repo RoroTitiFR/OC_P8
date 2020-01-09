@@ -58,6 +58,9 @@ def substitutes(request, code=0):
     if code == 0:
         return redirect("/")
 
+    form = SearchForm()
+
     return render(request, "app/substitutes.html", {
+        "form": form,
         "code": code
     })
