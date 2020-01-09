@@ -1,7 +1,6 @@
 from urllib.parse import quote
 
 import requests
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from app.forms.search import SearchForm
@@ -37,9 +36,18 @@ def results(request, search_term=""):
     r = requests.get(request_url)
     json = r.json()
 
+    products = []
+
+    for product in json["products"]:
+        if "image_front_url" in product and \
+                "product_name" in product and \
+                "quantity" in product:
+            products.append(product)
+
     form = SearchForm()
 
     return render(request, "app/search_results.html", {
-        "json": json,
-        "form": form
+        "products": products,
+        "form": form,
+        "search_term": search_term
     })
