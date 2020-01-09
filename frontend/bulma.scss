@@ -61,14 +61,6 @@ $colors: map-merge($colors, $addColors);
   background-color: $dark !important;
 }
 
-.__enveloppe {
-  mask: url("/assets/enveloppe.svg");
-}
-
-.__phone {
-  mask: url("/assets/phone.svg");
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-family: $family-secondary;
 }

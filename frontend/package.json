@@ -13,6 +13,7 @@
     "animate.css": "^3.7.2",
     "autoprefixer": "^9.7.3",
     "babel-loader": "^8.0.6",
+    "browserlist": "^1.0.1",
     "bulma": "^0.8.0",
     "css-loader": "^3.4.1",
     "jquery": "^3.4.1",

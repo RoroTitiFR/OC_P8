@@ -13,7 +13,7 @@
         </div>
 
         <!-- Hero content: will be in the middle -->
-        <div class="hero-body">
+        <div class="hero-body animated fadeInDown">
             <div class="container has-text-centered">
                 <h1 class="title is-1">
                     Du gras oui, mais de qualité !
@@ -100,14 +100,18 @@
             <div class="columns is-centered is-multiline mt-8">
                 <div class="column is-5-desktop is-12-touch">
                     <div class="notification is-primary is-flex flex-col items-center">
-                        <figure class="image is-128x128 __phone has-background-white mb-8" style="mask-size: cover"></figure>
+                        <figure class="image is-128x128 mb-8" style="mask-size: cover">
+                            <img src="{% static "phone.svg" %}">
+                        </figure>
                         <p class="title is-3">01 00 00 00 00</p>
                     </div>
                 </div>
 
                 <div class="column is-5-desktop is-12-touch">
                     <div class="notification is-primary is-flex flex-col items-center">
-                        <figure class="image is-128x128 __enveloppe has-background-white mb-8" style="mask-size: cover"></figure>
+                        <figure class="image is-128x128 __enveloppe mb-8" style="mask-size: cover">
+                            <img src="{% static "enveloppe.svg" %}">
+                        </figure>
                         <p class="title is-3">mail@mail.com</p>
                     </div>
                 </div>
