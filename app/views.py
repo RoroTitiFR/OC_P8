@@ -39,9 +39,7 @@ def results(request, search_term=""):
     products = []
 
     for product in json["products"]:
-        if "image_front_url" in product and \
-                "product_name" in product and \
-                "quantity" in product:
+        if "image_front_url" in product and "product_name" in product and "quantity" in product:
             products.append(product)
 
     form = SearchForm()
