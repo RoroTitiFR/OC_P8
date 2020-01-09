@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+@import "~animate.css/animate.css";
+
 @import "~bulma/sass/utilities/initial-variables";
 @import "~bulma/sass/utilities/functions";
 
@@ -52,7 +54,7 @@ $colors: map-merge($colors, $addColors);
 }
 
 .navbar {
-  transition: background-color 300ms ease;
+  transition: background-color 500ms ease;
 }
 
 .__home_dark_navbar {

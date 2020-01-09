@@ -1,19 +1,19 @@
 {% load static %}
 
-<header class="navbar is-fixed-top is-dark">
+<header class="navbar is-fixed-top is-dark animated fadeInDown faster">
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
                 <img src="{% static "logo_pur_beurre.png" %}" alt="Logo">
                 <h1 class="ml-4">Pur Beurre</h1>
             </a>
-            <span class="navbar-burger burger" data-target="navbarMenuHeroC">
+            <span class="navbar-burger burger" data-target="navbar-menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </span>
         </div>
-        <div id="navbarMenuHeroC" class="navbar-menu">
+        <div id="navbar-menu" class="navbar-menu animated fadeIn faster">
             <div class="navbar-end">
                 <div class="navbar-item">
                     <form class="is-marginless" method="post" action="{% url "index" %}">
