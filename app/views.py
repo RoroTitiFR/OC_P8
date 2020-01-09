@@ -39,8 +39,11 @@ def results(request, search_term=""):
     products = []
 
     for product in json["products"]:
+        # Check if the required keys exists
         if "image_front_url" in product and "product_name" in product and "quantity" in product:
-            products.append(product)
+            # Check if all the keys contain a value
+            if product["image_front_url"] and product["product_name"] and product["quantity"]:
+                products.append(product)
 
     form = SearchForm()
 
@@ -48,4 +51,13 @@ def results(request, search_term=""):
         "products": products,
         "form": form,
         "search_term": search_term
+    })
+
+
+def substitutes(request, code=0):
+    if code == 0:
+        return redirect("/")
+
+    return render(request, "app/substitutes.html", {
+        "code": code
     })
