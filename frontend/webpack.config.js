@@ -6,7 +6,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 module.exports = {
     mode: "production",
     entry: {
-        "index": "./index.js"
+        "app": "./js/app.js"
     },
     devtool: 'source-map',
     plugins: [new MiniCssExtractPlugin()],
@@ -25,7 +25,6 @@ module.exports = {
                         options: {
                             ident: 'postcss',
                             plugins: [
-                                require('tailwindcss'),
                                 require("autoprefixer"),
                                 require("postcss-safe-important")({
                                     paths: p => p.indexOf("tailwind") === -1
