@@ -1,6 +1,6 @@
 {% load static %}
 
-<header class="navbar is-fixed-top is-dark animated fadeInDown faster">
+<header class="navbar is-fixed-top is-dark">
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
@@ -32,15 +32,33 @@
                     </form>
                 </div>
 
-                <a class="navbar-item">
+                <a class="navbar-item is-hidden-touch">
                     <span class="icon">
                         <i class="fas fa-user fa-2x"></i>
                     </span>
                 </a>
 
-                <a class="navbar-item">
+                <a class="navbar-item is-hidden-touch">
                     <span class="icon">
                         <i class="fas fa-sign-out-alt fa-2x"></i>
+                    </span>
+                </a>
+
+                <a class="navbar-item is-hidden-desktop">
+                    <span class="icon">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <span>
+                        Mon compte
+                    </span>
+                </a>
+
+                <a class="navbar-item is-hidden-desktop">
+                    <span class="icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </span>
+                    <span>
+                        Se déconnecter
                     </span>
                 </a>
             </div>
