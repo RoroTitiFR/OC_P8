@@ -2,41 +2,65 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = {
     mode: "production",
     entry: {
-        "app": "./js/app.js"
+        "js/app": "./js/app.js",
+        "css/animate": "./scss/animate.scss",
+        "css/bulma": "./scss/bulma.scss",
+        "css/mini-tailwind": "./scss/tailwind.scss"
     },
     devtool: 'source-map',
-    plugins: [new MiniCssExtractPlugin()],
+    plugins: [
+        new FixStyleOnlyEntriesPlugin(),
+        new MiniCssExtractPlugin()
+    ],
     optimization: {
-        minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+        minimizer: [
+            new TerserJSPlugin({}),
+            new OptimizeCSSAssetsPlugin({
+                cssProcessorOptions: {
+                    map: {
+                        inline: false // set to false if you want CSS source maps
+                    }
+                }
+            })
+        ],
     },
     module: {
         rules: [
             {
                 test: /\.scss$/i,
                 use: [
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
+                    {
+                        loader: MiniCssExtractPlugin.loader
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
                     {
                         loader: 'postcss-loader',
                         options: {
-                            ident: 'postcss',
                             plugins: [
-                                require("autoprefixer"),
+                                require('postcss-import'),
+                                require("tailwindcss"),
                                 require("postcss-safe-important")({
                                     paths: p => p.indexOf("tailwind") === -1
                                 }),
+                                require("autoprefixer")
                             ],
+                            sourceMap: true
                         },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: true,
-                            // options...
+                            sourceMap: true
                         }
                     }
                 ]

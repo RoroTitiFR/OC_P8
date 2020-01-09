@@ -1,7 +1,7 @@
 @charset "utf-8";
 
-@import "~bulma/sass/utilities/initial-variables";
-@import "~bulma/sass/utilities/functions";
+@import "../node_modules/bulma/sass/utilities/initial-variables";
+@import "../node_modules/bulma/sass/utilities/functions";
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i|Scope+One&display=swap');
 
@@ -25,7 +25,7 @@ $text: $moules;
 $text-strong: $moules;
 $link: $moules;
 
-@import "~bulma/sass/utilities/derived-variables";
+@import "../node_modules/bulma/sass/utilities/derived-variables";
 
 $addColors: (
         "rooibos":($rooibos, $rooibos-invert),
@@ -37,7 +37,7 @@ $addColors: (
 
 $colors: map-merge($colors, $addColors);
 
-@import "~bulma/bulma";
+@import "../node_modules/bulma/bulma";
 
 .__home-hero {
   background: linear-gradient(rgba($dark, 0.5), rgba($dark, 0.5)), url('/assets/home_background.jpg') center center;
