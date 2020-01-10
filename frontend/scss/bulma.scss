@@ -44,6 +44,11 @@ $colors: map-merge($colors, $addColors);
   background-size: cover;
 }
 
+.__substitutes-hero {
+  background: linear-gradient(rgba($dark, 0.5), rgba($dark, 0.5)), attr(data-bg url) center center;
+  background-size: cover;
+}
+
 .navbar {
   transition: background-color 500ms ease;
 }

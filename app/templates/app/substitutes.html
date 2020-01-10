@@ -1,9 +1,47 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
+    <section class="hero is-primary __substitutes-hero" data-bg="{{ product.image_front_url }}">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title has-text-centered">
+                    Substituts pour "{{ product.product_name }}"
+                </h1>
+                <p class="subtitle has-text-centered">
+                    {{ products | length }} produit(s) trouvé(s)
+                </p>
+            </div>
+        </div>
+    </section>
+
     <section class="section">
         <div class="container">
-            {{ code }}
+            <div class="columns is-centered is-multiline">
+                {% for product in products %}
+                    <div class="column is-3-desktop is-12-touch">
+                        <div class="card w-full">
+                            <div class="card-image">
+                                <figure class="image is-square">
+                                    <img class="object-contain" src="{{ product.image_front_url }}"/>
+                                </figure>
+                            </div>
+
+                            <div class="card-content">
+                                <h5 class="title is-5">{{ product.product_name }}</h5>
+                            </div>
+
+                            <div class="card-footer">
+                                <a class="card-footer-item">
+                                    <span class="icon">
+                                        <i class="fas fa-save"></i>
+                                    </span>
+                                    Sauvegarder
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </section>
 {% endblock %}

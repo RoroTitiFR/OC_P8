@@ -12874,6 +12874,12 @@ a.panel-block:hover,label.panel-block:hover{
   background-size:cover
 }
 
+.__substitutes-hero{
+  background:-webkit-gradient(linear, left top, left bottom, from(rgba(54,54,54,0.5)), to(rgba(54,54,54,0.5))),attr(data-bg url) center center;
+  background:linear-gradient(rgba(54,54,54,0.5), rgba(54,54,54,0.5)),attr(data-bg url) center center;
+  background-size:cover
+}
+
 .navbar{
   -webkit-transition:background-color 500ms ease;
   transition:background-color 500ms ease
