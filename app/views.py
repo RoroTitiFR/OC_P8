@@ -1,10 +1,11 @@
+from typing import List
 from urllib.parse import quote
 
 import jellyfish as jellyfish
 from django.shortcuts import render, redirect
 
 from app.forms.search import SearchForm
-from app.models import Product
+from app.models import Product, CategoryProduct, Category
 
 
 def index(request):
@@ -29,8 +30,7 @@ def results(request, search_term=""):
     products = Product.objects.filter(name__icontains=search_term)
 
     # Computing the similarity property into the product object
-    for product in products:
-        product.similarity = round_by_hundred(jellyfish.jaro_distance(product.name, search_term) * 1000)
+    products = compute_similarities(products, search_term)
 
     # Finding the best similarity level to obtain at least 1 good result
     current_similarity_threshold = 1000
@@ -48,11 +48,9 @@ def results(request, search_term=""):
         else:
             current_similarity_threshold -= 100
 
-    form = SearchForm()
-
     return render(request, "app/search_results.html", {
         "products": good_results,
-        "form": form,
+        "form": SearchForm(),
         "search_term": search_term
     })
 
@@ -61,40 +59,65 @@ def substitutes(request, code=""):
     if code == "":
         return redirect("/")
 
-    result = Product.objects.filter(code=code)
+    search_product: Product = Product.objects.get(code=code)
 
-    if result:
-        search_product = result
-    else:
+    if not search_product:
         return redirect("/")
 
-    # TODO : code to find substitutes
-    # # Now let's search other products from the same category
-    # request_url = ("https://fr.openfoodfacts.org/cgi/search.pl?"
-    #                "action=process&"
-    #                "tagtype_0=categories&"
-    #                "tag_contains_0=contains&"
-    #                f"tag_0={category}&"
-    #                "sort_by=unique_scans_n&"
-    #                "page_size=50&"
-    #                "json=1")
-    #
-    # products = requests.get(request_url).json()["products"]
-    #
-    # good_products = []
-    #
-    # for product in products:
-    #     if all(key in product for key in expected_product_keys) and all(product[key] for key in expected_product_keys):
-    #         product["product_name"] = get_display_name_for_product(product)
-    #         good_products.append(product)
+    # Finding all the categories of the product
+    category_products: List[CategoryProduct] = CategoryProduct.objects.filter(product_id=search_product.code)
 
-    form = SearchForm()
+    # Finding the code of the category which counts the least items
+    smallest_category = None
+    smallest_count = 0
+
+    for category_product in category_products:
+        if smallest_count == 0 or Category.objects.filter(code=category_product.category_id).count() < smallest_count:
+            smallest_count = Category.objects.filter(code=category_product.category_id).count()
+            smallest_category = category_product.category
+
+    # Finding substitutes in selected category
+    products_ids = CategoryProduct.objects.filter(category=smallest_category).values_list("product_id", flat=True)
+    products = Product.objects.filter(code__in=products_ids)
+
+    # Computing the similarity property into the product object
+    products = compute_similarities(products, search_product.name)
+
+    # Finding the best similarity level to obtain at least 1 good result
+    current_similarity_threshold = 1000
+    good_substitutes = []
+
+    while True:
+        if current_similarity_threshold == 0:
+            break
+
+        possible_substitutes: List[Product] = [result for result in products
+                                               if result.similarity >= current_similarity_threshold]
+
+        possible_substitutes = [possible_substitute for possible_substitute in possible_substitutes
+                                if possible_substitute.code != search_product.code]
+
+        good_substitutes = [possible_substitute for possible_substitute in possible_substitutes
+                            if possible_substitute.nutrition_score < search_product.nutrition_score]
+
+        if len(good_substitutes) > 0:
+            good_substitutes = sorted(good_substitutes, key=lambda x: x.nutrition_score)
+            break
+        else:
+            current_similarity_threshold -= 100
 
     return render(request, "app/substitutes.html", {
-        "form": form,
-        "products": good_products,
+        "form": SearchForm(),
+        "products": good_substitutes,
         "product": search_product
     })
+
+
+def compute_similarities(products, search_term):
+    for product in products:
+        product.similarity = round_by_hundred(jellyfish.jaro_distance(product.name, search_term) * 1000)
+
+    return products
 
 
 def round_by_hundred(n: float) -> int:
