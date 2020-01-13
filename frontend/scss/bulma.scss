@@ -57,6 +57,48 @@ $colors: map-merge($colors, $addColors);
   background-color: $dark !important;
 }
 
+@mixin __nutrition_label {
+  user-select: none;
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.__nutrition_a {
+  @include __nutrition_label;
+  color: $white;
+  background-color: #038141;
+}
+
+.__nutrition_b {
+  @include __nutrition_label;
+  background-color: #85bb2f;
+}
+
+.__nutrition_c {
+  @include __nutrition_label;
+  background-color: #fecb02;
+}
+
+.__nutrition_d {
+  @include __nutrition_label;
+  color: $white;
+  background-color: #ee8100;
+}
+
+.__nutrition_e {
+  @include __nutrition_label;
+  color: $white;
+  background-color: #e63e11;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $family-secondary;
 }

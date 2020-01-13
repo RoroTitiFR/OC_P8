@@ -20,6 +20,8 @@
                 {% for product in products %}
                     <div class="column is-3-desktop is-12-touch">
                         <div class="card w-full">
+                            <h1 class="__nutrition_{{ product.nutrition_grade }}">{{ product.nutrition_grade | upper }}</h1>
+
                             <div class="card-image">
                                 <figure class="image is-square">
                                     <img class="object-contain" src="{{ product.thumbnail_url }}"/>
@@ -28,7 +30,6 @@
 
                             <div class="card-content">
                                 <h5 class="title is-5">{{ product.display_name }}</h5>
-                                <p>{{ product.nutrition_score }}</p>
                             </div>
 
                             <div class="card-footer">
