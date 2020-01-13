@@ -1,4 +1,7 @@
+import datetime
+
 import requests
+from tqdm import tqdm
 from django.core.management import BaseCommand
 
 from app.models import Category, Product, CategoryProduct
@@ -7,12 +10,25 @@ from app.models import Category, Product, CategoryProduct
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
+        time_beginning = datetime.datetime.now()
+
+        print("Cleaning the database...")
+
+        CategoryProduct.objects.all().delete()
+        Product.objects.all().delete()
+        Category.objects.all().delete()
+
+        print("Cleaning done!")
+
+        print("Downloading products...")
+
         url = "https://fr.openfoodfacts.org/categories.json"
         request = requests.get(url)
 
-        categories = request.json()["tags"]
+        all_categories = request.json()["tags"]
+        good_categories = [category for category in all_categories if category["products"] >= 5000]
 
-        for category in categories:
+        for category in tqdm(good_categories):
             if category["products"] >= 5000:
 
                 db_category = Category(code=category["id"], name=category["name"])
@@ -35,6 +51,7 @@ class Command(BaseCommand):
                     "allergens_from_ingredients",
                     "nutriments",
                     "nutrition_grade_fr",
+                    "image_front_url"
                 ]
 
                 expected_nutriments_keys = [
@@ -59,20 +76,21 @@ class Command(BaseCommand):
 
                             # Inserting the food product into the database
                             food, created = Product.objects.get_or_create(
-                                carbohydrates_100g=nutriments["carbohydrates_100g"],
-                                energy_100g=nutriments["energy_value"],
-                                energy_unit=nutriments["energy_unit"],
-                                fat_100g=nutriments["fat_100g"],
-                                fiber_100g=nutriments["fiber_100g"],
                                 code=product["code"],
                                 name=product["product_name"],
                                 nutrition_score=nutriments["nutrition-score-fr"],
                                 nutrition_grade=product["nutrition_grade_fr"],
-                                proteins_100g=nutriments["proteins_100g"],
-                                salt_100g=nutriments["salt_100g"],
+                                energy_100g=nutriments["energy_value"],
+                                energy_unit=nutriments["energy_unit"],
+                                carbohydrates_100g=nutriments["carbohydrates_100g"],
+                                sugars_100g=nutriments["sugars_100g"],
+                                fat_100g=nutriments["fat_100g"],
                                 saturated_fat_100g=nutriments["saturated-fat_100g"],
+                                salt_100g=nutriments["salt_100g"],
                                 sodium_100g=nutriments["sodium_100g"],
-                                sugars_100g=nutriments["sugars_100g"]
+                                fiber_100g=nutriments["fiber_100g"],
+                                proteins_100g=nutriments["proteins_100g"],
+                                thumbnail_url=product["image_front_url"]
                             )
 
                             CategoryProduct.objects.create(category_id=db_category.code, product_id=food.code)
@@ -83,3 +101,9 @@ class Command(BaseCommand):
                             print("Not OK, nutriments missing")
                     else:
                         print("Not OK, product properties missing")
+
+        print("Download done!")
+
+        time_ending = datetime.datetime.now()
+
+        print(f"Operation duration : {time_ending - time_beginning}")
