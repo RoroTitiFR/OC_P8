@@ -1,5 +1,6 @@
 from urllib.parse import quote
 
+import jellyfish as jellyfish
 from django.shortcuts import render, redirect
 
 from app.forms.search import SearchForm
@@ -27,17 +28,37 @@ def results(request, search_term=""):
 
     products = Product.objects.filter(name__icontains=search_term)
 
+    # Computing the similarity property into the product object
+    for product in products:
+        product.similarity = round_by_hundred(jellyfish.jaro_distance(product.name, search_term) * 1000)
+
+    # Finding the best similarity level to obtain at least 1 good result
+    current_similarity_threshold = 1000
+    good_results = []
+
+    while True:
+        if current_similarity_threshold == 0:
+            break
+
+        good_results = [result for result in products if result.similarity >= current_similarity_threshold]
+
+        if len(good_results) > 0:
+            good_results = sorted(good_results, key=lambda x: x.nutrition_score)
+            break
+        else:
+            current_similarity_threshold -= 100
+
     form = SearchForm()
 
     return render(request, "app/search_results.html", {
-        "products": products,
+        "products": good_results,
         "form": form,
         "search_term": search_term
     })
 
 
-def substitutes(request, code=0):
-    if code == 0:
+def substitutes(request, code=""):
+    if code == "":
         return redirect("/")
 
     result = Product.objects.filter(code=code)
@@ -46,8 +67,6 @@ def substitutes(request, code=0):
         search_product = result
     else:
         return redirect("/")
-
-    category = search_product["compared_to_category"]
 
     # TODO : code to find substitutes
     # # Now let's search other products from the same category
@@ -76,3 +95,13 @@ def substitutes(request, code=0):
         "products": good_products,
         "product": search_product
     })
+
+
+def round_by_hundred(n: float) -> int:
+    """
+    Round a number by 100
+
+    :param n: The number to be rounded
+    :return: The rounded value
+    """
+    return int(round(n / 100)) * 100

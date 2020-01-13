@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Product(models.Model):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__similarity_value = 0
+
     code = models.TextField(primary_key=True)
     name = models.TextField()
 
@@ -26,6 +30,14 @@ class Product(models.Model):
     @property
     def display_name(self):
         return f"{self.name}, {self.quantity}"
+
+    @property
+    def similarity(self):
+        return self.__similarity_value
+
+    @similarity.setter
+    def similarity(self, value):
+        self.__similarity_value = value
 
 
 class Category(models.Model):
