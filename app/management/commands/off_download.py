@@ -48,10 +48,10 @@ class Command(BaseCommand):
                 expected_product_keys = [
                     "product_name",
                     "code",
-                    "allergens_from_ingredients",
                     "nutriments",
                     "nutrition_grade_fr",
-                    "image_front_url"
+                    "image_front_url",
+                    "quantity"
                 ]
 
                 expected_nutriments_keys = [
@@ -78,6 +78,7 @@ class Command(BaseCommand):
                             food, created = Product.objects.get_or_create(
                                 code=product["code"],
                                 name=product["product_name"],
+                                quantity=product["quantity"],
                                 nutrition_score=nutriments["nutrition-score-fr"],
                                 nutrition_grade=product["nutrition_grade_fr"],
                                 energy_100g=nutriments["energy_value"],

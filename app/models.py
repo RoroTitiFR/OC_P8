@@ -8,6 +8,8 @@ class Product(models.Model):
     nutrition_score = models.IntegerField()
     nutrition_grade = models.CharField(max_length=1)
 
+    quantity = models.TextField()
+
     energy_100g = models.IntegerField()
     energy_unit = models.TextField()
     carbohydrates_100g = models.FloatField()
