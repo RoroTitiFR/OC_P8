@@ -28,5 +28,8 @@ class Category(models.Model):
 
 
 class CategoryProduct(models.Model):
-    id_category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    id_product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    class Meta:
+        unique_together = [['category', 'product']]
+
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
