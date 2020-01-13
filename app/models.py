@@ -23,6 +23,10 @@ class Product(models.Model):
 
     thumbnail_url = models.TextField()
 
+    @property
+    def display_name(self):
+        return f"{self.name}, {self.quantity}"
+
 
 class Category(models.Model):
     code = models.TextField(primary_key=True)
