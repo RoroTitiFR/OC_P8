@@ -1,0 +1,14 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <h2>Sign up</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Sign up</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

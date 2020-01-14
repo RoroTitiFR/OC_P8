@@ -7,5 +7,6 @@ urlpatterns = [
     path("results/", views.results, name="results"),
     path("results/<str:search_term>/", views.results, name="results"),
     path("substitutes/", views.substitutes, name="substitutes"),
-    path("substitutes/<str:code>/", views.substitutes, name="substitutes")
+    path("substitutes/<str:code>/", views.substitutes, name="substitutes"),
+    path("signup/", views.signup, name="signup")
 ]
