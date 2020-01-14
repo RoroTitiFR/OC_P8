@@ -3,11 +3,62 @@
 {% block content %}
     <section class="section">
         <div class="container">
-            <h2>Sign up</h2>
+            <h2 class="title is-2">Créer mon compte</h2>
+            <p class="subtitle pt-8 pb-8">
+                Pour pouvoir enregistrer dès aujourd'hui toutes vos combinaisons produit/substitut préférées,
+                créez dès maintenant votre compte. C'est entièrement gratuit !
+            </p>
+
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Sign up</button>
+
+                <div class="field">
+                    <label class="label">Adresse email</label>
+
+                    <div class="control">
+                        {{ signup_form.email }}
+                    </div>
+
+                    <p class="help is-danger">
+                        {% for error in signup_form.errors.email %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </p>
+                </div>
+
+                <div class="field">
+                    <label class="label">Mot de passe</label>
+
+                    <div class="control">
+                        {{ signup_form.password1 }}
+                    </div>
+
+                    <p class="help is-danger">
+                        {% for error in signup_form.errors.password1 %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </p>
+                </div>
+
+                <div class="field">
+                    <label class="label">Confirmation du mot de passe</label>
+
+                    <div class="control">
+                        {{ signup_form.password2 }}
+                    </div>
+
+                    <p class="help is-danger">
+                        {% for error in signup_form.errors.password2 %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </p>
+                </div>
+
+                <div class="field is-grouped is-grouped-centered">
+                    <div class="control">
+                        <button class="button is-primary m-8" type="submit">Créer mon compte</button>
+                    </div>
+                </div>
             </form>
         </div>
     </section>

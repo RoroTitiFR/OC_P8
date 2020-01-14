@@ -2,6 +2,7 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 
 from app.forms.auth import CustomUserCreationForm
+from app.forms.search import SearchForm
 
 
 def signup(request):
@@ -15,5 +16,6 @@ def signup(request):
         form = CustomUserCreationForm()
 
     return render(request, "app/signup.html", {
-        "form": form
+        "signup_form": form,
+        "form": SearchForm()
     })
