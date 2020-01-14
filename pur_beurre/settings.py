@@ -74,7 +74,6 @@ WSGI_APPLICATION = 'pur_beurre.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'NAME': 'pur_beurre',
         'USER': 'pur_beurre',
         'PASSWORD': 'pur_beurre',
@@ -121,3 +120,5 @@ STATIC_URL = '/assets/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
 ]
+
+AUTH_USER_MODEL = 'app.PurBeurreUser'
