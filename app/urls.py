@@ -16,5 +16,7 @@ urlpatterns = [
         template_name="app/login.html", authentication_form=LoginForm, extra_context={
             "search_form": SearchForm()
         }
-    ), name="login")
+    ), name="login"),
+    path("logout/", views.logout, name="logout"),
+    path("my-account/", views.my_account, name="my_account")
 ]

@@ -32,35 +32,69 @@
                     </form>
                 </div>
 
-                <a class="navbar-item is-hidden-touch">
-                    <span class="icon">
-                        <i class="fas fa-user fa-2x"></i>
-                    </span>
-                </a>
+                {% if user.is_authenticated %}
+                    <a class="navbar-item is-hidden-touch" href="{% url "my_account" %}">
+                        <span class="icon">
+                            <i class="fas fa-user fa-lg"></i>
+                        </span>
+                    </a>
 
-                <a class="navbar-item is-hidden-touch">
-                    <span class="icon">
-                        <i class="fas fa-sign-out-alt fa-2x"></i>
-                    </span>
-                </a>
+                    <a class="navbar-item is-hidden-touch" href="{% url "logout" %}">
+                        <span class="icon">
+                            <i class="fas fa-sign-out-alt fa-lg"></i>
+                        </span>
+                    </a>
+                {% else %}
+                    <a class="navbar-item is-hidden-touch" href="{% url "login" %}">
+                        <span class="icon">
+                            <i class="fas fa-sign-in-alt fa-lg"></i>
+                        </span>
+                    </a>
 
-                <a class="navbar-item is-hidden-desktop">
-                    <span class="icon">
-                        <i class="fas fa-user"></i>
-                    </span>
-                    <span>
-                        Mon compte
-                    </span>
-                </a>
+                    <a class="navbar-item is-hidden-touch" href="{% url "register" %}">
+                        <span class="icon">
+                            <i class="fas fa-user-plus fa-lg"></i>
+                        </span>
+                    </a>
+                {% endif %}
 
-                <a class="navbar-item is-hidden-desktop">
-                    <span class="icon">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </span>
-                    <span>
-                        Se déconnecter
-                    </span>
-                </a>
+                {% if user.is_authenticated %}
+                    <a class="navbar-item is-hidden-desktop" href="{% url "my_account" %}">
+                        <span class="icon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span>
+                            Mon compte
+                        </span>
+                    </a>
+
+                    <a class="navbar-item is-hidden-desktop" href="{% url "logout" %}">
+                        <span class="icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </span>
+                        <span>
+                            Se déconnecter
+                        </span>
+                    </a>
+                {% else %}
+                    <a class="navbar-item is-hidden-desktop" href="{% url "login" %}">
+                        <span class="icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </span>
+                        <span>
+                            Se connecter
+                        </span>
+                    </a>
+
+                    <a class="navbar-item is-hidden-desktop" href="{% url "register" %}">
+                        <span class="icon">
+                            <i class="fas fa-user-plus"></i>
+                        </span>
+                        <span>
+                            Créer mon compte
+                        </span>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>

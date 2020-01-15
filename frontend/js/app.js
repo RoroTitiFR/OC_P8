@@ -1,8 +1,16 @@
 import $ from "jquery"
 
-$(window).scroll(function () {
+$(window).on("scroll resize", function () {
     const navbar = $(".navbar");
+    const navbarMenu = $(".navbar-menu");
+    const navbarBurger = $(".navbar-burger");
+
     navbar.toggleClass("__home_dark_navbar shadow-xl", $(this).scrollTop() > 0);
+
+    if (navbarBurger.hasClass("is-active")) {
+        navbarBurger.toggleClass("is-active");
+        navbarMenu.toggleClass("is-active");
+    }
 });
 
 $(document).ready(function () {

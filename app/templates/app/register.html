@@ -7,7 +7,7 @@
 
             <p class="subtitle pt-8 pb-8">
                 Pour pouvoir enregistrer dès aujourd'hui toutes vos combinaisons produit/substitut préférées,
-                créez dès maintenant votre compte. C'est entièrement gratuit !
+                créez votre compte personnel. C'est entièrement gratuit !
             </p>
 
             <form method="post">
@@ -17,11 +17,11 @@
                     <label class="label">Adresse email</label>
 
                     <div class="control">
-                        {{ signup_form.email }}
+                        {{ register_form.email }}
                     </div>
 
                     <p class="help is-danger">
-                        {% for error in signup_form.errors.email %}
+                        {% for error in register_form.errors.email %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </p>
@@ -31,11 +31,11 @@
                     <label class="label">Mot de passe</label>
 
                     <div class="control">
-                        {{ signup_form.password1 }}
+                        {{ register_form.password1 }}
                     </div>
 
                     <p class="help is-danger">
-                        {% for error in signup_form.errors.password1 %}
+                        {% for error in register_form.errors.password1 %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </p>
@@ -45,11 +45,11 @@
                     <label class="label">Confirmation du mot de passe</label>
 
                     <div class="control">
-                        {{ signup_form.password2 }}
+                        {{ register_form.password2 }}
                     </div>
 
                     <p class="help is-danger">
-                        {% for error in signup_form.errors.password2 %}
+                        {% for error in register_form.errors.password2 %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </p>
