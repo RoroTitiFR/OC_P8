@@ -5,6 +5,13 @@
         <div class="container">
             <h2 class="title is-2">Gérer mon compte</h2>
 
+            {% if success %}
+                <div class="notification is-success">
+                    <button class="delete"></button>
+                    {{ success }}
+                </div>
+            {% endif %}
+
             <form method="post">
                 {% csrf_token %}
 
@@ -24,7 +31,7 @@
 
                 <div class="field is-grouped is-grouped-centered">
                     <div class="control">
-                        <button class="button is-primary m-8" type="submit">Mettre à jour mes données</button>
+                        <button class="button is-primary m-8" type="submit">Mettre à jour mes informations</button>
                     </div>
                 </div>
             </form>

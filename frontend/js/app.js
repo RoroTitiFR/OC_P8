@@ -17,6 +17,8 @@ $(document).ready(function () {
     const navbar = $(".navbar");
     const navbarMenu = $(".navbar-menu");
     const navbarBurger = $(".navbar-burger");
+    const notification = $(".notification");
+    const notificationDelete = $(".notification .delete");
 
     // Check for click events on the navbar burger icon
     navbarBurger.click(function () {
@@ -28,4 +30,8 @@ $(document).ready(function () {
             navbar.toggleClass("__home_dark_navbar")
         }
     });
+
+    notificationDelete.click(function () {
+        $(this).parent().remove()
+    })
 });

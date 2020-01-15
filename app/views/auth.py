@@ -31,7 +31,11 @@ def my_account(request):
         form = CustomUserChangeForm(data=request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect("my_account")
+            return render(request, "app/my_account.html", {
+                "success": "Vos informations ont bien été mises à jour.",
+                "change_form": form,
+                "search_form": SearchForm()
+            })
     else:
         form = CustomUserChangeForm(instance=request.user)
 
