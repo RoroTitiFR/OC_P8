@@ -124,3 +124,4 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'app.PurBeurreUser'
 
 LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/"
