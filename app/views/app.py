@@ -19,7 +19,7 @@ def index(request):
         form = SearchForm()
 
     return render(request, "app/home.html", {
-        "form": form
+        "search_form": form
     })
 
 
@@ -50,7 +50,7 @@ def results(request, search_term=""):
 
     return render(request, "app/search_results.html", {
         "products": good_results,
-        "form": SearchForm(),
+        "search_form": SearchForm(),
         "search_term": search_term
     })
 
@@ -107,7 +107,7 @@ def substitutes(request, code=""):
             current_similarity_threshold -= 100
 
     return render(request, "app/substitutes.html", {
-        "form": SearchForm(),
+        "search_form": SearchForm(),
         "products": good_substitutes,
         "product": search_product
     })

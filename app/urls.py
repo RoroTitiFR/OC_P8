@@ -1,6 +1,9 @@
+from django.contrib.auth import views as auth_views
 from django.urls import path
 
-from . import views
+from app import views
+from app.forms.auth import LoginForm
+from app.forms.search import SearchForm
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -8,5 +11,10 @@ urlpatterns = [
     path("results/<str:search_term>/", views.results, name="results"),
     path("substitutes/", views.substitutes, name="substitutes"),
     path("substitutes/<str:code>/", views.substitutes, name="substitutes"),
-    path("signup/", views.signup, name="signup")
+    path("register/", views.register, name="register"),
+    path("login/", auth_views.LoginView.as_view(
+        template_name="app/login.html", authentication_form=LoginForm, extra_context={
+            "search_form": SearchForm()
+        }
+    ), name="login")
 ]

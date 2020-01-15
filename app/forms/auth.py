@@ -5,9 +5,9 @@ from app.models import PurBeurreUser
 
 
 class CustomUserCreationForm(UserCreationForm):
-    email = forms.CharField(
+    email = forms.EmailField(
         required=True,
-        widget=forms.TextInput(attrs={
+        widget=forms.EmailInput(attrs={
             "placeholder": "Votre adresse mail",
             "class": "input"
         }),
@@ -52,3 +52,21 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = PurBeurreUser
         fields = ("email",)
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.EmailField(
+        required=True,
+        widget=forms.EmailInput(attrs={
+            "placeholder": "Votre adresse mail",
+            "class": "input"
+        })
+    )
+
+    password = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(attrs={
+            "placeholder": "Votre mot de passe",
+            "class": "input"
+        })
+    )

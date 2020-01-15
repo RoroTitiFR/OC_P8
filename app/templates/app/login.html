@@ -3,12 +3,13 @@
 {% block content %}
     <section class="section">
         <div class="container">
-            <h2 class="title is-2">Créer mon compte</h2>
+            <h2 class="title is-2">Se connecter à mon compte</h2>
 
-            <p class="subtitle pt-8 pb-8">
-                Pour pouvoir enregistrer dès aujourd'hui toutes vos combinaisons produit/substitut préférées,
-                créez dès maintenant votre compte. C'est entièrement gratuit !
-            </p>
+            {% if form.non_field_errors %}
+                <div class="notification is-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
 
             <form method="post">
                 {% csrf_token %}
@@ -17,7 +18,7 @@
                     <label class="label">Adresse email</label>
 
                     <div class="control">
-                        {{ signup_form.email }}
+                        {{ form.username }}
                     </div>
 
                     <p class="help is-danger">
@@ -31,7 +32,7 @@
                     <label class="label">Mot de passe</label>
 
                     <div class="control">
-                        {{ signup_form.password1 }}
+                        {{ form.password }}
                     </div>
 
                     <p class="help is-danger">
@@ -41,25 +42,13 @@
                     </p>
                 </div>
 
-                <div class="field">
-                    <label class="label">Confirmation du mot de passe</label>
-
-                    <div class="control">
-                        {{ signup_form.password2 }}
-                    </div>
-
-                    <p class="help is-danger">
-                        {% for error in signup_form.errors.password2 %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </p>
-                </div>
-
                 <div class="field is-grouped is-grouped-centered">
                     <div class="control">
-                        <button class="button is-primary m-8" type="submit">Créer mon compte</button>
+                        <button class="button is-primary m-8" type="submit">Se connecter</button>
                     </div>
                 </div>
+
+                <input type="hidden" name="next" value="/">
             </form>
         </div>
     </section>

@@ -1,11 +1,11 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
-from app.forms.auth import CustomUserCreationForm
+from app.forms.auth import CustomUserCreationForm, LoginForm
 from app.forms.search import SearchForm
 
 
-def signup(request):
+def register(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -17,5 +17,5 @@ def signup(request):
 
     return render(request, "app/signup.html", {
         "signup_form": form,
-        "form": SearchForm()
+        "search_form": SearchForm()
     })
