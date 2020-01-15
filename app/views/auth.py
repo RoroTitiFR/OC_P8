@@ -1,4 +1,5 @@
 from django.contrib.auth import login as django_login, logout as django_logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from app.forms.auth import CustomUserCreationForm, CustomUserChangeForm
@@ -26,6 +27,7 @@ def logout(request):
     return redirect("index")
 
 
+@login_required
 def my_account(request):
     if request.method == "POST":
         form = CustomUserChangeForm(data=request.POST, instance=request.user)
