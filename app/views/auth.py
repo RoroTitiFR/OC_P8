@@ -1,7 +1,7 @@
 from django.contrib.auth import login as django_login, logout as django_logout
 from django.shortcuts import render, redirect
 
-from app.forms.auth import CustomUserCreationForm
+from app.forms.auth import CustomUserCreationForm, CustomUserChangeForm
 from app.forms.search import SearchForm
 
 
@@ -27,4 +27,15 @@ def logout(request):
 
 
 def my_account(request):
-    return render(request, "app/my_account.html")
+    if request.method == "POST":
+        form = CustomUserChangeForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("my_account")
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+
+    return render(request, "app/my_account.html", {
+        "change_form": form,
+        "search_form": SearchForm()
+    })

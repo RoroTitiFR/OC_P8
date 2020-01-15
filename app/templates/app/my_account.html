@@ -4,6 +4,30 @@
     <section class="section">
         <div class="container">
             <h2 class="title is-2">Gérer mon compte</h2>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="field">
+                    <label class="label">Adresse mail</label>
+
+                    <div class="control">
+                        {{ change_form.email }}
+                    </div>
+
+                    <p class="help is-danger">
+                        {% for error in change_form.errors.email %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </p>
+                </div>
+
+                <div class="field is-grouped is-grouped-centered">
+                    <div class="control">
+                        <button class="button is-primary m-8" type="submit">Mettre à jour mes données</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 {% endblock %}

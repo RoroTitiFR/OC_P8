@@ -5,7 +5,7 @@
         <div class="container">
             <h2 class="title is-2">Créer mon compte</h2>
 
-            <p class="subtitle pt-8 pb-8">
+            <p class="subtitle">
                 Pour pouvoir enregistrer dès aujourd'hui toutes vos combinaisons produit/substitut préférées,
                 créez votre compte personnel. C'est entièrement gratuit !
             </p>
@@ -14,7 +14,7 @@
                 {% csrf_token %}
 
                 <div class="field">
-                    <label class="label">Adresse email</label>
+                    <label class="label">Adresse mail</label>
 
                     <div class="control">
                         {{ register_form.email }}
