@@ -60,6 +60,12 @@ module.exports = {
                         presets: ["@babel/preset-env"]
                     }
                 }
+            },
+            {
+                test: /\.(eot|svg|woff|woff2|ttf)$/,
+                use: {
+                    loader: "raw-loader"
+                }
             }
         ],
     },

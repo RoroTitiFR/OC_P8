@@ -1,3 +1,4 @@
+import "@fortawesome/fontawesome-free/js/all"
 import $ from "jquery"
 
 $(window).on("scroll resize", function () {
