@@ -2,10 +2,11 @@ from typing import List
 from urllib.parse import quote
 
 import jellyfish as jellyfish
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from app.forms.search import SearchForm
-from app.models import Product, CategoryProduct, Category
+from app.models import Product, CategoryProduct, Category, UserProduct
 
 
 def index(request):
@@ -118,6 +119,16 @@ def details(request, code):
 
     return render(request, "app/details.html", {
         "product": product
+    })
+
+
+@login_required
+def my_substitutes(request):
+    user_id = request.user.id
+    saved_substitutes = UserProduct.objects.all()
+
+    return render(request, "app/saved_substitutes.html", {
+        "substitutes": saved_substitutes
     })
 
 

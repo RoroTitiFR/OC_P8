@@ -117,7 +117,8 @@ class CategoryProduct(models.Model):
 
 class UserProduct(models.Model):
     class Meta:
-        unique_together = [['user', 'product']]
+        unique_together = [['user', 'product', 'substitute']]
 
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(PurBeurreUser, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name="product", on_delete=models.CASCADE)
+    substitute = models.ForeignKey(Product, related_name="substitute", on_delete=models.CASCADE)
