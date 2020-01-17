@@ -94,6 +94,13 @@ class Product(models.Model):
     def similarity(self, value):
         self.__similarity_value = value
 
+    @property
+    def kcal(self):
+        if self.energy_unit.lower() == "kj":
+            return round(self.energy_100g / 4.184)
+
+        return self.energy_100g
+
 
 class Category(models.Model):
     code = models.TextField(primary_key=True)

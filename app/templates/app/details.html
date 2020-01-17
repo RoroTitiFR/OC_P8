@@ -1,0 +1,57 @@
+{% load static %}
+
+<h5 class="title is-5">
+    Nutriscore
+</h5>
+
+<figure class="image w-6/12 object-contain ml-auto mr-auto mb-8">
+    <img class="object-contain" src="{% static "nutriscore/"|add:"nutriscore-"|add:product.nutrition_grade|add:".svg" %}">
+</figure>
+
+<h5 class="title is-5">
+    Repères nutritionnels pour 100g
+</h5>
+
+<table class="table is-fullwidth is-striped">
+    <tr>
+        <td>Energie</td>
+        <td>{{ product.kcal }} kcal</td>
+    </tr>
+
+    <tr>
+        <td>
+            Matières grasses<br/>
+            &nbsp;&nbsp;&nbsp;Dont acides gras saturés
+        </td>
+        <td>
+            {{ product.fat_100g }}<br/>
+            {{ product.saturated_fat_100g }}
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Glucides<br/>
+            &nbsp;&nbsp;&nbsp;Dont sucres
+        </td>
+        <td>
+            {{ product.carbohydrates_100g }}<br/>
+            {{ product.sugars_100g }}
+        </td>
+    </tr>
+
+    <tr>
+        <td>Fibres</td>
+        <td>{{ product.fiber_100g }}</td>
+    </tr>
+
+    <tr>
+        <td>Protéines</td>
+        <td>{{ product.proteins_100g }}</td>
+    </tr>
+
+    <tr>
+        <td>Sel</td>
+        <td>{{ product.salt_100g }}</td>
+    </tr>
+</table>

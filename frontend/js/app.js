@@ -17,8 +17,10 @@ $(document).ready(function () {
     const navbar = $(".navbar");
     const navbarMenu = $(".navbar-menu");
     const navbarBurger = $(".navbar-burger");
-    const notification = $(".notification");
     const notificationDelete = $(".notification .delete");
+    const modal = $(".modal");
+    const modalDelete = $(".modal .delete");
+    const modalOverlay = $(".modal .modal-background");
 
     // Check for click events on the navbar burger icon
     navbarBurger.click(function () {
@@ -33,5 +35,13 @@ $(document).ready(function () {
 
     notificationDelete.click(function () {
         $(this).parent().remove()
-    })
+    });
+
+    modalDelete.click(function () {
+        $(this).closest(modal).toggleClass("is-active")
+    });
+
+    modalOverlay.click(function () {
+        $(this).closest(modal).toggleClass("is-active")
+    });
 });

@@ -1,6 +1,10 @@
 {% extends "app/layout.html" %}
 
+{% load static %}
+
 {% block content %}
+    <script src="{% static "js/substitutes.js" %}"></script>
+
     <section class="hero is-primary __substitutes-hero" data-bg="{{ product.image_front_url }}">
         <div class="hero-body">
             <div class="container">
@@ -33,7 +37,9 @@
                             </div>
 
                             <div class="card-footer">
-                                <a class="card-footer-item">
+                                <a class="__open-modal-details card-footer-item"
+                                   data-code="{{ product.code }}"
+                                   data-name="{{ product.display_name }}">
                                     <span class="icon">
                                         <i class="fas fa-eye"></i>
                                     </span>
@@ -53,4 +59,29 @@
             </div>
         </div>
     </section>
+
+    <div class="__modal-details modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Modal title</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="__loading-details is-flex flex-col items-center">
+                    <div class="lds-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+
+                <div class="__placeholder-details"></div>
+            </section>
+            <footer class="modal-card-foot">
+                <a class="button is-primary" target="_blank">Voir la fiche d'OpenFoodFacts</a>
+            </footer>
+        </div>
+    </div>
 {% endblock %}

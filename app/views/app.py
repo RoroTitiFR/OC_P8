@@ -113,6 +113,14 @@ def substitutes(request, code=""):
     })
 
 
+def details(request, code):
+    product = Product.objects.get(code=code)
+
+    return render(request, "app/details.html", {
+        "product": product
+    })
+
+
 def compute_similarities(products, search_term):
     for product in products:
         product.similarity = round_by_hundred(jellyfish.jaro_distance(product.name, search_term) * 1000)

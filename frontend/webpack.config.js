@@ -6,6 +6,7 @@ module.exports = {
     mode: "production",
     entry: {
         "js/app": "./js/app.js",
+        "js/substitutes": "./js/substitutes.js",
         "css/animate": "./scss/animate.scss",
         "css/bulma": "./scss/bulma.scss",
         "css/mini-tailwind": "./scss/tailwind.scss"

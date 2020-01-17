@@ -13007,6 +13007,120 @@ a.panel-block:hover,label.panel-block:hover{
   background-color:#e63e11
 }
 
+.lds-ellipsis{
+  display:inline-block;
+  position:relative;
+  width:80px;
+  height:80px
+}
+
+.lds-ellipsis div{
+  position:absolute;
+  top:33px;
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:#345a61;
+  -webkit-animation-timing-function:cubic-bezier(0, 1, 1, 0);
+          animation-timing-function:cubic-bezier(0, 1, 1, 0)
+}
+
+.lds-ellipsis div:nth-child(1){
+  left:8px;
+  -webkit-animation:lds-ellipsis1 0.6s infinite;
+          animation:lds-ellipsis1 0.6s infinite
+}
+
+.lds-ellipsis div:nth-child(2){
+  left:8px;
+  -webkit-animation:lds-ellipsis2 0.6s infinite;
+          animation:lds-ellipsis2 0.6s infinite
+}
+
+.lds-ellipsis div:nth-child(3){
+  left:32px;
+  -webkit-animation:lds-ellipsis2 0.6s infinite;
+          animation:lds-ellipsis2 0.6s infinite
+}
+
+.lds-ellipsis div:nth-child(4){
+  left:56px;
+  -webkit-animation:lds-ellipsis3 0.6s infinite;
+          animation:lds-ellipsis3 0.6s infinite
+}
+
+@-webkit-keyframes lds-ellipsis1{
+  0%{
+    -webkit-transform:scale(0);
+            transform:scale(0)
+  }
+
+  100%{
+    -webkit-transform:scale(1);
+            transform:scale(1)
+  }
+}
+
+@keyframes lds-ellipsis1{
+  0%{
+    -webkit-transform:scale(0);
+            transform:scale(0)
+  }
+
+  100%{
+    -webkit-transform:scale(1);
+            transform:scale(1)
+  }
+}
+
+@-webkit-keyframes lds-ellipsis3{
+  0%{
+    -webkit-transform:scale(1);
+            transform:scale(1)
+  }
+
+  100%{
+    -webkit-transform:scale(0);
+            transform:scale(0)
+  }
+}
+
+@keyframes lds-ellipsis3{
+  0%{
+    -webkit-transform:scale(1);
+            transform:scale(1)
+  }
+
+  100%{
+    -webkit-transform:scale(0);
+            transform:scale(0)
+  }
+}
+
+@-webkit-keyframes lds-ellipsis2{
+  0%{
+    -webkit-transform:translate(0, 0);
+            transform:translate(0, 0)
+  }
+
+  100%{
+    -webkit-transform:translate(24px, 0);
+            transform:translate(24px, 0)
+  }
+}
+
+@keyframes lds-ellipsis2{
+  0%{
+    -webkit-transform:translate(0, 0);
+            transform:translate(0, 0)
+  }
+
+  100%{
+    -webkit-transform:translate(24px, 0);
+            transform:translate(24px, 0)
+  }
+}
+
 h1,h2,h3,h4,h5,h6{
   font-family:"Open Sans",BlinkMacSystemFont,-apple-system,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue","Helvetica","Arial",sans-serif
 }
