@@ -12,7 +12,7 @@
                     Substituts pour "{{ product.display_name }}"
                 </h1>
                 <p class="subtitle has-text-centered">
-                    {{ products | length }} produit(s) trouvé(s)
+                    {{ substitutes | length }} produit(s) trouvé(s)
                 </p>
             </div>
         </div>
@@ -21,37 +21,42 @@
     <section class="section">
         <div class="container">
             <div class="columns is-centered is-multiline">
-                {% for product in products %}
+                {% for substitute in substitutes %}
                     <div class="column is-3-desktop is-12-touch">
                         <div class="card w-full">
-                            <h1 class="__nutrition_{{ product.nutrition_grade }}">{{ product.nutrition_grade | upper }}</h1>
+                            <h1 class="__nutrition_{{ substitute.nutrition_grade }}">{{ substitute.nutrition_grade | upper }}</h1>
 
                             <div class="card-image">
                                 <figure class="image is-square">
-                                    <img class="object-contain" src="{{ product.thumbnail_url }}"/>
+                                    <img class="object-contain" src="{{ substitute.thumbnail_url }}"/>
                                 </figure>
                             </div>
 
                             <div class="card-content">
-                                <h5 class="title is-5">{{ product.display_name }}</h5>
+                                <h5 class="title is-5">{{ substitute.display_name }}</h5>
                             </div>
 
                             <div class="card-footer">
                                 <a class="__open-modal-details card-footer-item"
-                                   data-code="{{ product.code }}"
-                                   data-name="{{ product.display_name }}">
+                                   data-code="{{ substitute.code }}"
+                                   data-name="{{ substitute.display_name }}">
                                     <span class="icon">
                                         <i class="fas fa-eye"></i>
                                     </span>
                                     Détails
                                 </a>
 
-                                <a class="card-footer-item">
-                                    <span class="icon">
-                                        <i class="fas fa-save"></i>
-                                    </span>
-                                    Sauvegarder
-                                </a>
+                                {% if substitute.saved %}
+                                    {% include "app/saved_indicator.html" %}
+                                {% else %}
+                                    <a class="__save-substitute card-footer-item" data-product="{{ product.code }}"
+                                       data-substitute="{{ substitute.code }}">
+                                        <span class="icon">
+                                            <i class="fas fa-save"></i>
+                                        </span>
+                                        Sauvegarder
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

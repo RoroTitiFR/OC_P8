@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./axios";
 
 $(document).ready(function () {
     const openModalDetails = $(".__open-modal-details");
@@ -7,6 +7,7 @@ $(document).ready(function () {
     const loadingDetails = $(".__loading-details > .lds-ellipsis");
     const openOpenFoodFactsLink = $(".modal-card-foot > a");
     const placeholderDetails = $(".__placeholder-details");
+    const saveSubstitute = $(".__save-substitute");
 
     openModalDetails.click(function () {
         const productCode = $(this).attr("data-code");
@@ -35,4 +36,27 @@ $(document).ready(function () {
                 loadingDetails.css("display", "none")
             })
     });
+
+    saveSubstitute.click(function () {
+        const productCode = $(this).attr("data-product");
+        const substituteCode = $(this).attr("data-substitute");
+
+        const formData = new FormData();
+        formData.set("product_code", productCode);
+        formData.set("substitute_code", substituteCode);
+
+        const that = this;
+
+        axios
+            .post("", formData)
+            .then(function (response) {
+                console.log(response);
+                $(that).replaceWith(response.data);
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+            .finally(function () {
+            })
+    })
 });

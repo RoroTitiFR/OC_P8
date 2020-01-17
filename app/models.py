@@ -60,6 +60,7 @@ class Product(models.Model):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.__similarity_value = 0
+        self.__saved = False
 
     code = models.TextField(primary_key=True)
     name = models.TextField()
@@ -93,6 +94,14 @@ class Product(models.Model):
     @similarity.setter
     def similarity(self, value):
         self.__similarity_value = value
+
+    @property
+    def saved(self):
+        return self.__saved
+
+    @saved.setter
+    def saved(self, value):
+        self.__saved = value
 
     @property
     def kcal(self):
