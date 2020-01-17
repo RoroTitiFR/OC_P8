@@ -3,11 +3,54 @@
 {% load static %}
 
 {% block content %}
+    <script src="{% static "js/substitutes.js" %}"></script>
+
     <section class="section">
         <div class="container">
             {% for substitute in substitutes %}
-                {{ substitute.product.display_name }}
+                <div class="card mb-5">
+                    <div class="card-content">
+                        <div class="columns">
+                            <div class="column is-flex justify-between items-center">
+                                {{ substitute.product.display_name }}
+
+                                <a class="__open-modal-details button is-primary"
+                                   data-code="{{ substitute.product.code }}"
+                                   data-name="{{ substitute.product.display_name }}">
+                                    <span class="icon">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                    <span>Détails</span>
+                                </a>
+                            </div>
+
+                            <div class="column is-flex justify-between items-center">
+                                {{ substitute.substitute.display_name }}
+
+                                <a class="__open-modal-details button is-primary"
+                                   data-code="{{ substitute.substitute.code }}"
+                                   data-name="{{ substitute.substitute.display_name }}">
+                                    <span class="icon">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
+                                    <span>Détails</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <a class="card-footer-item has-text-danger">
+                            <span class="icon">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                            <span>Supprimer</span>
+                        </a>
+                    </div>
+                </div>
             {% endfor %}
         </div>
     </section>
+
+    {% include "app/product_details_modal.html" %}
 {% endblock %}
