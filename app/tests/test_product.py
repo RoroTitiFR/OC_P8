@@ -4,13 +4,16 @@ from app.models import Product
 
 
 class YourTestClass(TestCase):
+    product_name = "My product"
+    product_quantity = "300 g"
+
     @classmethod
     def setUpTestData(cls):
-        product = Product.objects.create(
-            name="My product",
+        Product.objects.create(
+            name=cls.product_name,
             nutrition_score=0,
             nutrition_grade=0,
-            quantity="300 g",
+            quantity=cls.product_quantity,
             energy_100g=8.368,
             energy_unit="kj",
             carbohydrates_100g=0,
@@ -26,7 +29,7 @@ class YourTestClass(TestCase):
 
     def test_display_name(self):
         product = Product.objects.first()
-        self.assertEqual(product.display_name, "My product, 300 g")
+        self.assertEqual(product.display_name, f"{self.product_name}, {self.product_quantity}")
 
     def test_kcal(self):
         product = Product.objects.first()
