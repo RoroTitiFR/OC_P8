@@ -88,6 +88,13 @@ class Product(models.Model):
         return f"{self.name}, {self.quantity}"
 
     @property
+    def kcal(self):
+        if self.energy_unit.lower() == "kj":
+            return round(self.energy_100g / 4.184)
+
+        return self.energy_100g
+
+    @property
     def similarity(self):
         return self.__similarity_value
 
@@ -102,13 +109,6 @@ class Product(models.Model):
     @saved.setter
     def saved(self, value):
         self.__saved = value
-
-    @property
-    def kcal(self):
-        if self.energy_unit.lower() == "kj":
-            return round(self.energy_100g / 4.184)
-
-        return self.energy_100g
 
 
 class Category(models.Model):
