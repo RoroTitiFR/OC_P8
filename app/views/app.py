@@ -21,7 +21,7 @@ def index(request):
     else:
         form = SearchForm()
 
-    return render(request, "app/home.html", {
+    return render(request, "app/index.html", {
         "search_form": form
     })
 
