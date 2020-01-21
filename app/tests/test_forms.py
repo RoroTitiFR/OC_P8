@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from app.forms.auth import CustomUserCreationForm
+from app.forms.auth import CustomUserCreationForm, CustomUserChangeForm
 from app.forms.search_product import SearchProductForm
 
 
@@ -31,7 +31,6 @@ class YourTestClass(TestCase):
             "password1": "pexoyeH9B@!t-aChastU",
             "password2": "pexoyeH9B@!t-aChastU"
         })
-
         self.assertFalse(register_form.is_valid())
         for error in register_form.errors:
             self.assertIn("is-danger", register_form.fields[error].widget.attrs["class"])
@@ -42,18 +41,24 @@ class YourTestClass(TestCase):
             "password1": "H9B@!t",
             "password2": "H9B@!t"
         })
-
         self.assertFalse(register_form.is_valid())
         for error in register_form.errors:
             self.assertIn("is-danger", register_form.fields[error].widget.attrs["class"])
 
     def test_register_form_with_common_password(self):
         register_form = CustomUserCreationForm(data={
-            "email": "example.example@example.com",
+            "email": "example@example.com",
             "password1": "azerty123",
             "password2": "azerty123"
         })
-        
         self.assertFalse(register_form.is_valid())
         for error in register_form.errors:
             self.assertIn("is-danger", register_form.fields[error].widget.attrs["class"])
+
+    def test_change_user_form_with_fake_email(self):
+        change_user_form = CustomUserChangeForm(data={
+            "email": "example@example",
+        })
+        self.assertFalse(change_user_form.is_valid())
+        for error in change_user_form.errors:
+            self.assertIn("is-danger", change_user_form.fields[error].widget.attrs["class"])

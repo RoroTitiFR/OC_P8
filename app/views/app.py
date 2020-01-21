@@ -16,7 +16,7 @@ def index(request):
         form = SearchForm(request.POST)
 
         if form.is_valid():
-            return redirect("/results/" + quote(form.data["search_term"]))
+            return redirect(reverse("results", kwargs={"search_term": quote(form.data["search_term"])}))
 
     else:
         form = SearchForm()

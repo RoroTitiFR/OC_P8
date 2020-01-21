@@ -17,3 +17,11 @@ class HomepageTest(TestCase):
         self.assertTemplateUsed(response, "app/index.html")
         self.assertTemplateUsed(response, "app/layout.html")
         self.assertTemplateUsed(response, "app/navbar.html")
+
+    def test_index_view_posting_form(self):
+        data = {
+            "search_term": "product"
+        }
+
+        response = self.client.post(reverse("index"), data)
+        self.assertRedirects(response, reverse("results", kwargs={"search_term": "product"}))
