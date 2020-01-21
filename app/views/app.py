@@ -4,6 +4,7 @@ from urllib.parse import quote
 import jellyfish as jellyfish
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from app.forms.save_substitute import SaveSubstituteForm
 from app.forms.search import SearchForm
@@ -146,11 +147,18 @@ def details(request, code):
 @login_required
 def my_substitutes(request):
     user_id = request.user.id
-    saved_substitutes = UserProduct.objects.all()
+    saved_substitutes = UserProduct.objects.filter(user_id=user_id)
 
     return render(request, "app/saved_substitutes.html", {
         "substitutes": saved_substitutes
     })
+
+
+@login_required
+def delete_substitute(request, couple_id):
+    user_id = request.user.id
+    UserProduct.objects.filter(id=couple_id, user_id=user_id).delete()
+    return redirect(reverse("my_substitutes"))
 
 
 def compute_similarities(products, search_term):
