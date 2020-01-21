@@ -42,7 +42,7 @@ class HomepageTest(TestCase):
         UserProduct.objects.create(user_id=user.id, product_id="5", substitute_id="1")
 
     def test_substitutes_view_url_exists_at_desired_location(self):
-        response = self.client.get("/substitutes/1/")
+        response = self.client.get("/substitutes/5/")
         self.assertEqual(response.status_code, 200)
 
     def test_substitutes_view_redirects_if_code_none(self):
@@ -61,10 +61,18 @@ class HomepageTest(TestCase):
         self.client.login(username="example@example.com", password="password")
         response = self.client.get(reverse("substitutes", kwargs={"code": "5"}))
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context["substitutes"]), 4)
         self.assertTrue(response.context["substitutes"][0].saved)
         self.assertTemplateUsed(response, "app/substitutes.html")
         self.assertTemplateUsed(response, "app/layout.html")
         self.assertTemplateUsed(response, "app/navbar.html")
+
+    def test_delete_substitute_view(self):
+        self.client.login(username="example@example.com", password="password")
+        couple = UserProduct.objects.first()
+        response = self.client.get(reverse("delete_substitute", kwargs={"couple_id": couple.id}))
+        self.assertRedirects(response, reverse("my_substitutes"))
+        self.assertEqual(len(UserProduct.objects.all()), 0)
 
     def test_substitutes_view_posting_form(self):
         data = {
@@ -75,5 +83,5 @@ class HomepageTest(TestCase):
         self.client.login(username="example@example.com", password="password")
         response = self.client.post(reverse("substitutes"), data)
         self.assertTemplateUsed(response, "app/saved_indicator.html")
-        self.assertEqual(UserProduct.objects.get(substitute_id=2).product.code, "1")
-        self.assertEqual(UserProduct.objects.get(substitute_id=2).substitute.code, "2")
+        self.assertEqual(UserProduct.objects.get(substitute_id="2").product.code, "1")
+        self.assertEqual(UserProduct.objects.get(substitute_id="2").substitute.code, "2")

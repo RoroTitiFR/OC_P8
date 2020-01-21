@@ -20,6 +20,6 @@ urlpatterns = [
     path("logout/", views.logout, name="logout"),
     path("my-account/", views.my_account, name="my_account"),
     path("my-substitutes/", views.my_substitutes, name="my_substitutes"),
-    path("my-substitutes/delete/<str:couple_id>", views.delete_substitute, name="delete_substitutes"),
-    path("details/<str:code>", views.details, name="details")
+    path("my-substitutes/delete/<str:couple_id>/", views.delete_substitute, name="delete_substitute"),
+    path("details/<str:code>/", views.details, name="details")
 ]
