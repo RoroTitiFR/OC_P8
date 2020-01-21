@@ -39,7 +39,7 @@ class HomepageTest(TestCase):
 
     def test_view_url_redirect_if_product_none(self):
         response = self.client.get("/results/")
-        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse("index"))
 
     def test_view_url_accessible_by_name(self):
         response = self.client.get(reverse("results", kwargs=self.search_one_product_kwargs))
