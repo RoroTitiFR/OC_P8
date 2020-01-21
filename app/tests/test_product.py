@@ -12,7 +12,7 @@ class YourTestClass(TestCase):
         Product.objects.create(
             name=cls.product_name,
             nutrition_score=0,
-            nutrition_grade=0,
+            nutrition_grade="a",
             quantity=cls.product_quantity,
             energy_100g=8.368,
             energy_unit="kj",
