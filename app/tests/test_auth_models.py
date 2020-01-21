@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from app.models import Product, PurBeurreUser
+from app.models import PurBeurreUser
 
 
 class YourTestClass(TestCase):

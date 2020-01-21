@@ -7,8 +7,7 @@ from app.models import PurBeurreUser
 class HomepageTest(TestCase):
     @classmethod
     def setUp(cls):
-        user = PurBeurreUser.objects.create_user("example@example.com", "password")
-        user.save()
+        PurBeurreUser.objects.create_user("example@example.com", "password")
 
     def test_login_view_url_exists_at_desired_location(self):
         response = self.client.get("/login/")

@@ -61,7 +61,6 @@ def results(request, search_term=""):
 def substitutes(request, code=""):
     if request.POST:
         form = SaveSubstituteForm(request.POST)
-        print(request.user.id)
 
         if form.is_valid():
             product_code = form.cleaned_data["product_code"]
@@ -74,12 +73,12 @@ def substitutes(request, code=""):
 
     else:
         if code == "":
-            return redirect("/")
+            return redirect(reverse("index"))
 
-        search_product: Product = Product.objects.get(code=code)
-
-        if not search_product:
-            return redirect("/")
+        try:
+            search_product: Product = Product.objects.get(code=code)
+        except Product.DoesNotExist:
+            return redirect(reverse("index"))
 
         # Finding all the categories of the product
         category_products: List[CategoryProduct] = CategoryProduct.objects.filter(product_id=search_product.code)
