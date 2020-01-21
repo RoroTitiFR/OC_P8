@@ -10,7 +10,7 @@ class HomepageTest(TestCase):
 
     @classmethod
     def setUp(cls):
-        for index in range(1, 6):
+        for index in range(1, 5 + 1):
             Product.objects.create(
                 code=index,
                 name=f"My product {index}",
@@ -37,6 +37,10 @@ class HomepageTest(TestCase):
         response = self.client.get("/results/product 2/")
         self.assertEqual(response.status_code, 200)
 
+    def test_view_url_redirect_if_product_none(self):
+        response = self.client.get("/results/")
+        self.assertEqual(response.status_code, 302)
+
     def test_view_url_accessible_by_name(self):
         response = self.client.get(reverse("results", kwargs=self.search_one_product_kwargs))
         self.assertEqual(response.status_code, 200)
@@ -48,7 +52,7 @@ class HomepageTest(TestCase):
         self.assertTemplateUsed(response, "app/layout.html")
         self.assertTemplateUsed(response, "app/navbar.html")
 
-    def test_view_has_correct_one_search_results(self):
+    def test_view_has_correct_one_search_result(self):
         response = self.client.get(reverse("results", kwargs=self.search_one_product_kwargs))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context["products"]), 1)
