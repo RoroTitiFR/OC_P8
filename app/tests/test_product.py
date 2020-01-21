@@ -31,7 +31,7 @@ class YourTestClass(TestCase):
         product = Product.objects.first()
         self.assertEqual(product.display_name, f"{self.product_name}, {self.product_quantity}")
 
-    def test_kcal(self):
+    def test_kilo_calorie(self):
         product = Product.objects.first()
         self.assertEqual(product.kcal, 2)
 
