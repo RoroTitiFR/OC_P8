@@ -31,7 +31,10 @@ class YourTestClass(TestCase):
             "password1": "pexoyeH9B@!t-aChastU",
             "password2": "pexoyeH9B@!t-aChastU"
         })
+
         self.assertFalse(register_form.is_valid())
+        for error in register_form.errors:
+            self.assertIn("is-danger", register_form.fields[error].widget.attrs["class"])
 
     def test_register_form_with_short_password(self):
         register_form = CustomUserCreationForm(data={
@@ -39,7 +42,10 @@ class YourTestClass(TestCase):
             "password1": "H9B@!t",
             "password2": "H9B@!t"
         })
+
         self.assertFalse(register_form.is_valid())
+        for error in register_form.errors:
+            self.assertIn("is-danger", register_form.fields[error].widget.attrs["class"])
 
     def test_register_form_with_common_password(self):
         register_form = CustomUserCreationForm(data={
@@ -47,4 +53,7 @@ class YourTestClass(TestCase):
             "password1": "azerty123",
             "password2": "azerty123"
         })
+        
         self.assertFalse(register_form.is_valid())
+        for error in register_form.errors:
+            self.assertIn("is-danger", register_form.fields[error].widget.attrs["class"])

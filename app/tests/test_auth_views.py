@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from app.forms.auth import CustomUserCreationForm
 from app.models import PurBeurreUser
 
 
@@ -75,3 +74,14 @@ class HomepageTest(TestCase):
 
         response = self.client.post(reverse("register"), data)
         self.assertRedirects(response, reverse("index"))
+        self.assertEqual(PurBeurreUser.objects.count(), 2)
+
+    def test_my_account_view_posting_form(self):
+        data = {
+            "email": "example.example.example@example.com"
+        }
+
+        self.client.login(username="example@example.com", password="password")
+        response = self.client.post(reverse("my_account"), data)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["user"].email, "example.example.example@example.com")
