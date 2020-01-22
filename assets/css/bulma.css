@@ -12894,6 +12894,7 @@ a.panel-block:hover,label.panel-block:hover{
      -moz-user-select:none;
       -ms-user-select:none;
           user-select:none;
+  z-index:10;
   position:absolute;
   right:-1rem;
   top:-1rem;
@@ -12918,6 +12919,7 @@ a.panel-block:hover,label.panel-block:hover{
      -moz-user-select:none;
       -ms-user-select:none;
           user-select:none;
+  z-index:10;
   position:absolute;
   right:-1rem;
   top:-1rem;
@@ -12941,6 +12943,7 @@ a.panel-block:hover,label.panel-block:hover{
      -moz-user-select:none;
       -ms-user-select:none;
           user-select:none;
+  z-index:10;
   position:absolute;
   right:-1rem;
   top:-1rem;
@@ -12964,6 +12967,7 @@ a.panel-block:hover,label.panel-block:hover{
      -moz-user-select:none;
       -ms-user-select:none;
           user-select:none;
+  z-index:10;
   position:absolute;
   right:-1rem;
   top:-1rem;
@@ -12988,6 +12992,7 @@ a.panel-block:hover,label.panel-block:hover{
      -moz-user-select:none;
       -ms-user-select:none;
           user-select:none;
+  z-index:10;
   position:absolute;
   right:-1rem;
   top:-1rem;

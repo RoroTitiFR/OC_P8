@@ -59,6 +59,7 @@ $colors: map-merge($colors, $addColors);
 
 @mixin __nutrition_label {
   user-select: none;
+  z-index: 10;
   position: absolute;
   right: -1rem;
   top: -1rem;
