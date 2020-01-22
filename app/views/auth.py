@@ -1,6 +1,7 @@
 from django.contrib.auth import login as django_login, logout as django_logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from app.forms.auth import CustomUserCreationForm, CustomUserChangeForm
 from app.forms.search import SearchForm
@@ -12,7 +13,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             django_login(request, user)
-            return redirect("index")
+            return redirect(reverse("index"))
     else:
         form = CustomUserCreationForm()
 
@@ -24,7 +25,7 @@ def register(request):
 
 def logout(request):
     django_logout(request)
-    return redirect("index")
+    return redirect(reverse("index"))
 
 
 @login_required

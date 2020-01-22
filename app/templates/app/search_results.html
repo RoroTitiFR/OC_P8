@@ -8,7 +8,7 @@
                     Résultats de recherche pour "{{ search_term }}"
                 </h1>
                 <p class="subtitle has-text-centered">
-                    {{ products | length }} produit(s) trouvé(s)
+                    {{ products|length }} produit(s) trouvé(s)
                 </p>
             </div>
         </div>
@@ -16,32 +16,38 @@
 
     <section class="section">
         <div class="container">
-            <div class="columns is-centered is-multiline">
-                {% for product in products %}
-                    <div class="column is-3-desktop is-12-touch">
-                        <div class="card w-full">
-                            <div class="card-image">
-                                <figure class="image is-square">
-                                    <img class="object-contain" src="{{ product.thumbnail_url }}"/>
-                                </figure>
-                            </div>
+            {% if products|length > 0 %}
+                <div class="columns is-centered is-multiline">
+                    {% for product in products %}
+                        <div class="column is-3-desktop is-12-touch">
+                            <div class="card w-full">
+                                <div class="card-image">
+                                    <figure class="image is-square">
+                                        <img class="object-contain" src="{{ product.thumbnail_url }}"/>
+                                    </figure>
+                                </div>
 
-                            <div class="card-content">
-                                <h5 class="title is-5">{{ product.display_name }}</h5>
-                            </div>
+                                <div class="card-content">
+                                    <h5 class="title is-5">{{ product.display_name }}</h5>
+                                </div>
 
-                            <div class="card-footer">
-                                <a class="card-footer-item" href="/substitutes/{{ product.code }}">
-                                    <span class="icon">
-                                        <i class="fas fa-exchange-alt"></i>
-                                    </span>
-                                    Voir les substituts
-                                </a>
+                                <div class="card-footer">
+                                    <a class="card-footer-item" href="/substitutes/{{ product.code }}">
+                                        <span class="icon">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </span>
+                                        Voir les substituts
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="notification is-warning">
+                    Il n'existe aucun produit pour vos critères de recherche dans la base de données.
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

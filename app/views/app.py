@@ -28,7 +28,7 @@ def index(request):
 
 def results(request, search_term=""):
     if search_term == "":
-        return redirect("/")
+        return redirect(reverse("index"))
 
     products = Product.objects.filter(name__icontains=search_term)
 
@@ -149,7 +149,8 @@ def my_substitutes(request):
     saved_substitutes = UserProduct.objects.filter(user_id=user_id)
 
     return render(request, "app/saved_substitutes.html", {
-        "substitutes": saved_substitutes
+        "substitutes": saved_substitutes,
+        "search_form": SearchForm()
     })
 
 

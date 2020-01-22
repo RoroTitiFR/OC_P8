@@ -7,6 +7,7 @@ from app.models import Product
 class HomepageTest(TestCase):
     search_one_product_kwargs = {"search_term": "product 2"}
     search_multiple_products_kwargs = {"search_term": "product"}
+    search_no_product_kwargs = {"search_term": "xyz"}
 
     @classmethod
     def setUp(cls):
@@ -51,6 +52,11 @@ class HomepageTest(TestCase):
         self.assertTemplateUsed(response, "app/search_results.html")
         self.assertTemplateUsed(response, "app/layout.html")
         self.assertTemplateUsed(response, "app/navbar.html")
+
+    def test_view_has_correct_no_product_found_search_result(self):
+        response = self.client.get(reverse("results", kwargs=self.search_no_product_kwargs))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context["products"]), 0)
 
     def test_view_has_correct_one_search_result(self):
         response = self.client.get(reverse("results", kwargs=self.search_one_product_kwargs))

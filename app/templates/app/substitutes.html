@@ -12,7 +12,7 @@
                     Substituts pour "{{ product.display_name }}"
                 </h1>
                 <p class="subtitle has-text-centered">
-                    {{ substitutes | length }} produit(s) trouvé(s)
+                    {{ substitutes|length }} produit(s) trouvé(s)
                 </p>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 {% for substitute in substitutes %}
                     <div class="column is-3-desktop is-12-touch">
                         <div class="card w-full">
-                            <h1 class="__nutrition_{{ substitute.nutrition_grade }}">{{ substitute.nutrition_grade | upper }}</h1>
+                            <h1 class="__nutrition_{{ substitute.nutrition_grade }}">{{ substitute.nutrition_grade|upper }}</h1>
 
                             <div class="card-image">
                                 <figure class="image is-square">
