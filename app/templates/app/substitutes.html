@@ -46,17 +46,19 @@
                                     Détails
                                 </a>
 
-                                {% if substitute.saved %}
-                                    {% include "app/saved_indicator.html" %}
-                                {% else %}
-                                    <a class="__save-substitute card-footer-item"
-                                       data-product="{{ product.code }}"
-                                       data-substitute="{{ substitute.code }}">
-                                        <span class="icon">
-                                            <i class="fas fa-save"></i>
-                                        </span>
-                                        Sauvegarder
-                                    </a>
+                                {% if user.is_authenticated %}
+                                    {% if substitute.saved %}
+                                        {% include "app/saved_indicator.html" %}
+                                    {% else %}
+                                        <a class="__save-substitute card-footer-item"
+                                           data-product="{{ product.code }}"
+                                           data-substitute="{{ substitute.code }}">
+                                            <span class="icon">
+                                                <i class="fas fa-save"></i>
+                                            </span>
+                                            Sauvegarder
+                                        </a>
+                                    {% endif %}
                                 {% endif %}
                             </div>
                         </div>
