@@ -12,6 +12,9 @@ from app.models import Product, CategoryProduct, Category, UserProduct
 
 
 def index(request):
+    """The index view, showing the homepage and handling search product requests
+    :param request: provided by Django
+    """
     if request.method == "POST":
         form = SearchForm(request.POST)
 
@@ -27,6 +30,10 @@ def index(request):
 
 
 def results(request, search_term=""):
+    """The search results view, showing the search results
+    :param request: provided by Django
+    :param search_term: the term to search for into the database
+    """
     if search_term == "":
         return redirect(reverse("index"))
 
@@ -59,6 +66,10 @@ def results(request, search_term=""):
 
 
 def substitutes(request, code=""):
+    """The find substitutes view, showing the possible substitutes for a given product and handling save substitute requests
+    :param request: provided by Django
+    :param code: The code of the product against which searching for substitutes
+    """
     if request.POST:
         form = SaveSubstituteForm(request.POST)
 
@@ -136,6 +147,10 @@ def substitutes(request, code=""):
 
 
 def details(request, code):
+    """The details view, computing the product details modal content
+    :param request: provided by Django
+    :param code: the code of the product for which we want the details
+    """
     try:
         product = Product.objects.get(code=code)
     except Product.DoesNotExist:
@@ -150,6 +165,9 @@ def details(request, code):
 
 @login_required
 def my_substitutes(request):
+    """The saved substitutes view, displaying the substitutes saved by the user
+    :param request: provided by Django
+    """
     user_id = request.user.id
     saved_substitutes = UserProduct.objects.filter(user_id=user_id)
 
@@ -161,23 +179,29 @@ def my_substitutes(request):
 
 @login_required
 def delete_substitute(request, couple_id):
+    """The saved substitute deletion view, handling deletion requests
+    :param request: provided by Django
+    :param couple_id: the substitutes couple (product+its substitute) to delete, for logged on user
+    """
     user_id = request.user.id
     UserProduct.objects.get(id=couple_id, user_id=user_id).delete()
     return redirect(reverse("my_substitutes"))
 
 
 def compute_similarities(products, search_term):
+    """Compute the similarity property of each product of the list, compared to a given search term
+    :param products: the products list to process
+    :param search_term: the search term to which we will compare the products names
+    """
     for product in products:
         product.similarity = round_by_hundred(jellyfish.jaro_distance(product.name, search_term) * 1000)
 
     return products
 
 
-def round_by_hundred(n: float) -> int:
+def round_by_hundred(number):
+    """Round a number by 100
+    :param number: the number to be rounded
+    :return: the rounded value
     """
-    Round a number by 100
-
-    :param n: The number to be rounded
-    :return: The rounded value
-    """
-    return int(round(n / 100)) * 100
+    return int(round(number / 100)) * 100
