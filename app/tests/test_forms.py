@@ -4,7 +4,7 @@ from app.forms.auth import CustomUserCreationForm, CustomUserChangeForm
 from app.forms.search_product import SearchProductForm
 
 
-class YourTestClass(TestCase):
+class TestForms(TestCase):
     def test_search_product_form_with_valid_data(self):
         register_form = SearchProductForm(data={
             "search_term": "product"

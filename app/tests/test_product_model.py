@@ -3,7 +3,7 @@ from django.test import TestCase
 from app.models import Product
 
 
-class YourTestClass(TestCase):
+class TestProductModel(TestCase):
     product_name = "My product"
     product_quantity = "300 g"
 

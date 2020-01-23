@@ -4,7 +4,7 @@ from django.urls import reverse
 from app.models import Product
 
 
-class HomepageTest(TestCase):
+class TestSearchProduct(TestCase):
     search_one_product_kwargs = {"search_term": "product 2"}
     search_multiple_products_kwargs = {"search_term": "product"}
     search_no_product_kwargs = {"search_term": "xyz"}

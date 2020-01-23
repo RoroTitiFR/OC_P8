@@ -4,7 +4,7 @@ from django.urls import reverse
 from app.models import PurBeurreUser
 
 
-class HomepageTest(TestCase):
+class TestAuthViews(TestCase):
     @classmethod
     def setUp(cls):
         PurBeurreUser.objects.create_user("example@example.com", "password")

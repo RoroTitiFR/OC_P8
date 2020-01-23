@@ -4,7 +4,7 @@ from django.urls import reverse
 from app.models import Product
 
 
-class HomepageTest(TestCase):
+class TestDetailsView(TestCase):
     @classmethod
     def setUp(cls):
         for index in range(1, 5 + 1):

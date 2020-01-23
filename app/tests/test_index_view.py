@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 
-class HomepageTest(TestCase):
+class TestIndexView(TestCase):
     def test_index_view_url_exists_at_desired_location(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)

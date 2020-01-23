@@ -4,7 +4,7 @@ from django.urls import reverse
 from app.models import Product, UserProduct, PurBeurreUser, Category, CategoryProduct
 
 
-class HomepageTest(TestCase):
+class TestSubstitutesViews(TestCase):
     @classmethod
     def setUp(cls):
         category = Category.objects.create(
