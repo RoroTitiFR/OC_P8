@@ -136,7 +136,12 @@ def substitutes(request, code=""):
 
 
 def details(request, code):
-    product = Product.objects.get(code=code)
+    try:
+        product = Product.objects.get(code=code)
+    except Product.DoesNotExist:
+        return render(request, "app/error.html", {
+            "error_message": "Ce produit n'existe pas dans la base de données."
+        })
 
     return render(request, "app/details.html", {
         "product": product

@@ -5,6 +5,8 @@ from app.models import PurBeurreUser
 
 class TestAuthModels(TestCase):
     def test_user_model(self):
+        """
+        """
         user = PurBeurreUser.objects.create_user("user@example.com", "password")
         self.assertEqual(str(user), "user@example.com")
 

@@ -31,15 +31,15 @@ class TestDetailsView(TestCase):
         response = self.client.get("/details/1/")
         self.assertEqual(response.status_code, 200)
 
-    # TODO
-    # def test_details_view_redirects_if_code_none(self):
-    #     response = self.client.get("/details/")
-    #     self.assertRedirects(response, reverse("index"))
+    def test_details_view_404_if_code_none(self):
+        response = self.client.get("/details/")
+        self.assertEqual(response.status_code, 404)
 
-    # TODO
-    # def test_details_view_redirects_if_code_does_not_exist(self):
-    #     response = self.client.get("/details/10/")
-    #     self.assertRedirects(response, reverse("index"))
+    def test_details_view_show_error_if_code_does_not_exist(self):
+        response = self.client.get(reverse("details", kwargs={"code": "10"}))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("error_message", response.context)
+        self.assertTemplateUsed(response, "app/error.html")
 
     def test_substitutes_view_url_accessible_by_name(self):
         response = self.client.get(reverse("details", kwargs={"code": "5"}))
