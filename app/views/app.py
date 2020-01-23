@@ -162,7 +162,7 @@ def my_substitutes(request):
 @login_required
 def delete_substitute(request, couple_id):
     user_id = request.user.id
-    UserProduct.objects.filter(id=couple_id, user_id=user_id).delete()
+    UserProduct.objects.get(id=couple_id, user_id=user_id).delete()
     return redirect(reverse("my_substitutes"))
 
 

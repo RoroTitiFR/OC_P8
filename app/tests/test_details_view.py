@@ -7,6 +7,8 @@ from app.models import Product
 class TestDetailsView(TestCase):
     @classmethod
     def setUp(cls):
+        """Creating a testing context
+        """
         for index in range(1, 5 + 1):
             Product.objects.create(
                 code=index,
@@ -28,24 +30,21 @@ class TestDetailsView(TestCase):
             )
 
     def test_details_view_url_exists_at_desired_location(self):
+        """Test the product details view URL exists
+        """
         response = self.client.get("/details/1/")
         self.assertEqual(response.status_code, 200)
 
     def test_details_view_404_if_code_none(self):
+        """Test the product details view returns 404 when no product code provided
+        """
         response = self.client.get("/details/")
         self.assertEqual(response.status_code, 404)
 
     def test_details_view_show_error_if_code_does_not_exist(self):
+        """Test the product details view shows an error if the product code is wrong
+        """
         response = self.client.get(reverse("details", kwargs={"code": "10"}))
         self.assertEqual(response.status_code, 200)
         self.assertIn("error_message", response.context)
         self.assertTemplateUsed(response, "app/error.html")
-
-    def test_substitutes_view_url_accessible_by_name(self):
-        response = self.client.get(reverse("details", kwargs={"code": "5"}))
-        self.assertEqual(response.status_code, 200)
-
-    def test_substitutes_view_uses_correct_template(self):
-        response = self.client.get(reverse("details", kwargs={"code": "5"}))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "app/details.html")

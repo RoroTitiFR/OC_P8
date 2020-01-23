@@ -9,6 +9,8 @@ class TestProductModel(TestCase):
 
     @classmethod
     def setUpTestData(cls):
+        """Creating a testing context
+        """
         Product.objects.create(
             name=cls.product_name,
             nutrition_score=0,
@@ -28,26 +30,36 @@ class TestProductModel(TestCase):
         )
 
     def test_display_name(self):
+        """Test the display name property of product model
+        """
         product = Product.objects.first()
         self.assertEqual(product.display_name, f"{self.product_name}, {self.product_quantity}")
 
     def test_kcal_from_kj(self):
+        """Test the conversion kj > kcal of product model
+        """
         product = Product.objects.first()
         self.assertEqual(product.kcal, 2)
 
     def test_kcal_from_kcal(self):
+        """Test the conversion kcal > kcal of product model
+        """
         product = Product.objects.first()
         product.energy_100g = 2
         product.energy_unit = "kcal"
         self.assertEqual(product.kcal, 2)
 
     def test_similarity(self):
+        """Test the similarity property of product model
+        """
         product = Product.objects.first()
         similarity = 500
         product.similarity = similarity
         self.assertEqual(product.similarity, similarity)
 
     def test_saved(self):
+        """Test the saved property of product model
+        """
         product = Product.objects.first()
         self.assertFalse(product.saved)
         product.saved = True

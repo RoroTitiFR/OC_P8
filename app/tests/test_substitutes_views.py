@@ -7,6 +7,8 @@ from app.models import Product, UserProduct, PurBeurreUser, Category, CategoryPr
 class TestSubstitutesViews(TestCase):
     @classmethod
     def setUp(cls):
+        """Creating a testing context
+        """
         category = Category.objects.create(
             code=1,
             name="My category"
@@ -42,22 +44,30 @@ class TestSubstitutesViews(TestCase):
         UserProduct.objects.create(user_id=user.id, product_id="5", substitute_id="1")
 
     def test_substitutes_view_url_exists_at_desired_location(self):
+        """Test the substitutes view URL exists
+        """
         response = self.client.get("/substitutes/5/")
         self.assertEqual(response.status_code, 200)
 
     def test_substitutes_view_redirects_if_code_none(self):
+        """Test the substitutes view redirects to index when no product code provided
+        """
         response = self.client.get("/substitutes/")
         self.assertRedirects(response, reverse("index"))
 
     def test_substitutes_view_redirects_if_code_does_not_exist(self):
+        """Test the substitutes view redirects to index when wrong product code provided
+        """
         response = self.client.get("/substitutes/10/")
         self.assertRedirects(response, reverse("index"))
 
     def test_substitutes_view_url_accessible_by_name(self):
+        """Test the substitutes view URL is accessible by name"""
         response = self.client.get(reverse("substitutes", kwargs={"code": "5"}))
         self.assertEqual(response.status_code, 200)
 
     def test_substitutes_view_uses_correct_template(self):
+        """Test the substitutes view uses the correct template"""
         self.client.login(username="example@example.com", password="password")
         response = self.client.get(reverse("substitutes", kwargs={"code": "5"}))
         self.assertEqual(response.status_code, 200)
@@ -68,6 +78,8 @@ class TestSubstitutesViews(TestCase):
         self.assertTemplateUsed(response, "app/navbar.html")
 
     def test_delete_substitute_view(self):
+        """Test the substitute deletion view works as expected
+        """
         self.client.login(username="example@example.com", password="password")
         couple = UserProduct.objects.first()
         response = self.client.get(reverse("delete_substitute", kwargs={"couple_id": couple.id}))
@@ -75,11 +87,12 @@ class TestSubstitutesViews(TestCase):
         self.assertEqual(len(UserProduct.objects.all()), 0)
 
     def test_substitutes_view_posting_form(self):
+        """Test the save substitute form with POST request
+        """
         data = {
             "product_code": 1,
             "substitute_code": 2
         }
-
         self.client.login(username="example@example.com", password="password")
         response = self.client.post(reverse("substitutes"), data)
         self.assertTemplateUsed(response, "app/saved_indicator.html")
