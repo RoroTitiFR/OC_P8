@@ -188,6 +188,12 @@ def my_substitutes(request):
         })
 
 
+def legal(request):
+    return render(request, "app/legal.html", {
+        "search_form": SearchForm()
+    })
+
+
 def compute_similarities(products, search_term):
     """Compute the similarity property of each product of the list, compared to a given search term
     :param products: the products list to process

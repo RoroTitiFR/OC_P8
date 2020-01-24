@@ -1,0 +1,127 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    {% block title %}Mentions légales{% endblock %}
+                </h1>
+                <h2 class="subtitle">
+                    En vigueur au 01/01/2020
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <p class="content">
+                Conformément aux dispositions des Articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 pour la Confiance dans l’économie
+                numérique, dite L.C.E.N., il est porté à la connaissance des Utilisateurs du site purbeurre-rt.herokuapp.com les présentes
+                mentions légales.<br/>
+                <br/>
+                La connexion et la navigation sur le site <b>Pur Beurre</b> par l’Utilisateur implique acceptation intégrale et sans
+                réserve des présentes mentions légales. Ces dernières sont accessibles sur le site à la rubrique « Mentions légales ».
+            </p>
+
+            <h4 class="title is-4">ARTICLE 1 : L’ÉDITEUR</h4>
+
+            <p class="content">
+                L’édition et la direction de la publication du site purbeurre-rt.herokuapp.com est assurée par Romaric Thibault,
+                domicilié 1 chemin des prés Sauzeaux, 86120 Bournand, dont le numéro de téléphone est 0780406882, et l'adresse
+                e-mail romaric.thibault.01@gmail.com.
+            </p>
+
+            <h4 class="title is-4">ARTICLE 2 : L’HÉBERGEUR</h4>
+
+            <p class="content">
+                L'hébergeur du site purbeurre-rt.herokuapp.com est la Société Heroku,
+                dont le siège social est situé au 50 Fremont St., Suite 300, San Francisco, CA, 94105, USA.
+            </p>
+
+            <h4 class="title is-4">ARTICLE 3 : ACCÈS AU SITE</h4>
+
+            <p class="content">
+                Le site est accessible par tout endroit, 7j/7, 24h/24 sauf cas de force majeure, interruption
+                programmée ou non et pouvant découler d’une nécessité de maintenance.
+                En cas de modification, interruption ou suspension des services le site purbeurre-rt.herokuapp.com ne saurait être tenu
+                responsable.
+            </p>
+
+            <h4 class="title is-4">ARTICLE 4 : COLLECTE DES DONNÉES</h4>
+
+            <p class="content">
+                Le site assure à l'Utilisateur une collecte et un traitement d'informations personnelles dans le respect de la vie privée
+                conformément à la loi n°78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés.
+                En vertu de la loi Informatique et Libertés, en date du 6 janvier 1978,
+                l'Utilisateur dispose d'un droit d'accès, de rectification, de suppression et d'opposition de ses données personnelles.
+                L'Utilisateur peut exercer ce droit par mail à l'adresse : mail@example.com
+            </p>
+
+            <h4 class="title is-4">ARTICLE 5 : COOKIES</h4>
+
+            <p class="content">
+                L’Utilisateur est informé que lors de ses visites sur le site, un cookie peut s’installer automatiquement sur son logiciel
+                de navigation. En naviguant sur le site, il les accepte.
+                Un cookie est un élément qui ne permet pas d’identifier l’Utilisateur mais sert à enregistrer des informations relatives à
+                la navigation de celui-ci sur le site Internet.
+                L’Utilisateur pourra désactiver ce cookie par l’intermédiaire des paramètres figurant au sein de son logiciel de navigation.
+            </p>
+
+            <h4 class="title is-4">ARTICLE 6 : PROPRIÉTÉ INTELLECTUELLE</h4>
+
+            <p class="content">
+                Toute utilisation, reproduction, diffusion, commercialisation, modification de toute ou partie du site
+                purbeurre-rt.herokuapp.com, sans autorisation de l’Editeur est prohibée et pourra entraîner des actions et poursuites
+                judiciaires telles que notamment prévues par le Code de la propriété intellectuelle
+                et le Code civil.
+            </p>
+
+            <h4 class="title is-4">ARTICLE 7 : CRÉDITS</h4>
+
+            <p class="content">
+                Le développement du site Internet purbeurre-rt.herokuapp.com a nécessité l'utilisation de librairies libres de droits
+                (open-source) tierces :
+            </p>
+
+            <div class="content">
+                <ul>
+                    <li>
+                        Langage de programmation <a href="https://www.python.org/">Python</a>
+                    </li>
+                    <li>
+                        Framework Web <a href="https://www.djangoproject.com/">Django</a>
+                    </li>
+                    <li>
+                        Feuilles de style <a href="https://bulma.io/">Bulma</a>,
+                        <a href="https://tailwindcss.com//">Tailwind</a> et
+                        <a href="https://daneden.github.io/animate.css/">Animate</a>
+                    </li>
+                    <li>
+                        Librairie d'interaction utilisateur dynamique côté client <a href="https://jquery.com/">jQuery</a>
+                    </li>
+                </ul>
+            </div>
+
+            <p class="content">
+                Le développement du site Internet purbeurre-rt.herokuapp.com a également nécessité l'utilisation d'éléments graphiques tiers :
+            </p>
+
+            <div class="content">
+                <ul>
+                    <li>
+                        Illustration de la page d'accueil par <a href="https://unsplash.com/photos/k60JspcBwKE/">@Kawin Harasai</a>
+                    </li>
+                    <li>
+                        Polices de caractères <a href="https://fonts.google.com/specimen/Open+Sans/">Open Sans</a> et
+                        <a href="https://fonts.google.com/specimen/Scope+One/">Scope One</a>
+                    </li>
+                    <li>
+                        Jeu d'icônes <a href="https://fontawesome.com/">FontAwesome</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}
