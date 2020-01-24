@@ -38,14 +38,15 @@
                                         <span>Détails</span>
                                     </a>
                                 </div>
-                            </div>
 
-                            <a class="button is-danger is-fullwidth __open-modal-confirm" data-id="{{ substitute.id }}">
-                                <span class="icon">
-                                    <i class="fas fa-trash"></i>
-                                </span>
-                                <span>Supprimer</span>
-                            </a>
+                                <div class="column flex-grow-0">
+                                    <a class="button is-danger __open-modal-confirm" data-id="{{ substitute.id }}">
+                                        <span class="icon">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
