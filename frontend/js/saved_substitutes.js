@@ -8,7 +8,7 @@ $(document).ready(function () {
         const id = $(this).attr("data-id");
         $("input[name=product_substitute_id]").attr("value", id);
 
-        modalConfirm.toggleClass("is-active")
+        modalConfirm.toggleClass("is-active");
     });
 
     confirmDelete.click(function () {
