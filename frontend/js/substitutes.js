@@ -41,6 +41,8 @@ $(document).ready(function () {
         const productCode = $(this).attr("data-product");
         const substituteCode = $(this).attr("data-substitute");
 
+        $(this).toggleClass("is-loading");
+
         const formData = new FormData();
         formData.set("product_code", productCode);
         formData.set("substitute_code", substituteCode);
