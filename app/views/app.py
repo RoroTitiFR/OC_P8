@@ -1,5 +1,4 @@
 from typing import List
-from urllib.parse import quote
 
 import jellyfish as jellyfish
 from django.contrib.auth.decorators import login_required
@@ -20,7 +19,7 @@ def index(request):
         form = SearchForm(request.POST)
 
         if form.is_valid():
-            return redirect(reverse("results", kwargs={"search_term": quote(form.data["search_term"])}))
+            return redirect(reverse("results", kwargs={"search_term": form.data["search_term"]}))
 
     else:
         form = SearchForm()

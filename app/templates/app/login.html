@@ -1,10 +1,18 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    {% block title %}Se connecter à mon compte{% endblock %}
+                </h1>
+            </div>
+        </div>
+    </section>
+
     <section class="section">
         <div class="container">
-            <h2 class="title is-2">Se connecter à mon compte</h2>
-
             {% if form.non_field_errors %}
                 <div class="notification is-danger">
                     {{ form.non_field_errors }}

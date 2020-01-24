@@ -1,15 +1,23 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    {% block title %}Créer mon compte{% endblock %}
+                </h1>
+
+                <h2 class="subtitle">
+                    Pour pouvoir enregistrer dès aujourd'hui toutes vos combinaisons produit/substitut préférées,
+                    créez votre compte personnel. C'est entièrement gratuit !
+                </h2>
+            </div>
+        </div>
+    </section>
+
     <section class="section">
         <div class="container">
-            <h2 class="title is-2">Créer mon compte</h2>
-
-            <p class="subtitle">
-                Pour pouvoir enregistrer dès aujourd'hui toutes vos combinaisons produit/substitut préférées,
-                créez votre compte personnel. C'est entièrement gratuit !
-            </p>
-
             <form method="post">
                 {% csrf_token %}
 
