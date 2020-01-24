@@ -8,6 +8,9 @@ from app.forms.search import SearchForm
 
 
 def register(request):
+    """The register view, showing the register page and handling register requests
+    :param request: provided by Django
+    """
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -23,13 +26,20 @@ def register(request):
     })
 
 
+@login_required
 def logout(request):
+    """The logout view, handling logout requests
+    :param request: provided by Django
+    """
     django_logout(request)
     return redirect(reverse("index"))
 
 
 @login_required
 def my_account(request):
+    """The account settings view, showing the change email page and handling the change account email requests
+    :param request:
+    """
     if request.method == "POST":
         form = CustomUserChangeForm(data=request.POST, instance=request.user)
         if form.is_valid():
