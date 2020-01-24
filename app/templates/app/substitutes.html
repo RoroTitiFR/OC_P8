@@ -23,48 +23,49 @@
             <div class="columns is-centered is-multiline">
                 {% for substitute in substitutes %}
                     <div class="column is-3-desktop is-12-touch">
-                    <div class="card w-full">
-                        <h1 class="__nutrition_{{ substitute.nutrition_grade }}">{{ substitute.nutrition_grade|upper }}</h1>
+                        <div class="card w-full">
+                            <h1 class="__nutrition_{{ substitute.nutrition_grade }}">{{ substitute.nutrition_grade|upper }}</h1>
 
-                        <div class="card-image">
-                            <figure class="image is-square">
-                                <img class="object-contain" src="{{ substitute.thumbnail_url }}"/>
-                            </figure>
-                        </div>
+                            <div class="card-image">
+                                <figure class="image is-square">
+                                    <img class="object-contain" src="{{ substitute.thumbnail_url }}"/>
+                                </figure>
+                            </div>
 
-                        <div class="card-content">
-                            <h5 class="title is-5">{{ substitute.display_name }}</h5>
+                            <div class="card-content">
+                                <h5 class="title is-5">{{ substitute.display_name }}</h5>
 
-                            <div class="is-flex flex-col">
-                                <a class="__open-modal-details button is-fullwidth mb-3"
-                                   data-code="{{ substitute.code }}"
-                                   data-name="{{ substitute.display_name }}">
-                                    <span class="icon">
-                                        <i class="fas fa-eye"></i>
-                                    </span>
-                                    <span>Détails</span>
-                                </a>
+                                <div class="is-flex flex-col">
+                                    <a class="__open-modal-details button is-fullwidth mb-3"
+                                       data-code="{{ substitute.code }}"
+                                       data-name="{{ substitute.display_name }}">
+                                        <span class="icon">
+                                            <i class="fas fa-eye"></i>
+                                        </span>
+                                        <span>Détails</span>
+                                    </a>
 
-                                {% if user.is_authenticated %}
-                                    {% if substitute.saved %}
-                                        {% include "app/saved_indicator.html" %}
-                                    {% else %}
-                                        <a class="__save-substitute button is-primary is-fullwidth"
-                                           data-product="{{ product.code }}"
-                                           data-substitute="{{ substitute.code }}">
-                                            <span class="icon">
-                                                <i class="fas fa-save"></i>
-                                            </span>
-                                            <span>Sauvegarder</span>
-                                        </a>
+                                    {% if user.is_authenticated %}
+                                        {% if substitute.saved %}
+                                            {% include "app/saved_indicator.html" %}
+                                        {% else %}
+                                            <a class="__save-substitute button is-primary is-fullwidth"
+                                               data-product="{{ product.code }}"
+                                               data-substitute="{{ substitute.code }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-save"></i>
+                                                </span>
+                                                <span>Sauvegarder</span>
+                                            </a>
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
-                </div>
             </div>
+        </div>
     </section>
 
     {% include "app/product_details_modal.html" %}
