@@ -189,6 +189,9 @@ def my_substitutes(request):
 
 
 def legal(request):
+    """The legal view, displaying the legal notes
+    :param request: provided by Django
+    """
     return render(request, "app/legal.html", {
         "search_form": SearchForm()
     })

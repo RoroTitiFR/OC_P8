@@ -80,9 +80,12 @@ class TestSubstitutesViews(TestCase):
     def test_delete_substitute_view(self):
         """Test the substitute deletion view works as expected
         """
-        self.client.login(username="example@example.com", password="password")
         couple = UserProduct.objects.first()
-        response = self.client.get(reverse("delete_substitute", kwargs={"couple_id": couple.id}))
+        data = {
+            "product_substitute_id": couple.id
+        }
+        self.client.login(username="example@example.com", password="password")
+        response = self.client.post(reverse("my_substitutes"), data)
         self.assertRedirects(response, reverse("my_substitutes"))
         self.assertEqual(len(UserProduct.objects.all()), 0)
 
