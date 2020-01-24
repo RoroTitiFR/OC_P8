@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
+from app.forms.delete_saved_substitute_form import DeleteSavedSubstituteForm
 from app.forms.save_substitute import SaveSubstituteForm
 from app.forms.search import SearchForm
 from app.models import Product, CategoryProduct, Category, UserProduct
@@ -165,27 +166,27 @@ def details(request, code):
 
 @login_required
 def my_substitutes(request):
-    """The saved substitutes view, displaying the substitutes saved by the user
+    """The saved substitutes view, displaying the substitutes saved by the user and handling deletion requests
     :param request: provided by Django
     """
-    user_id = request.user.id
-    saved_substitutes = UserProduct.objects.filter(user_id=user_id)
+    if request.POST:
+        form = DeleteSavedSubstituteForm(request.POST)
 
-    return render(request, "app/saved_substitutes.html", {
-        "substitutes": saved_substitutes,
-        "search_form": SearchForm()
-    })
+        if form.is_valid():
+            product_substitute_id = form.cleaned_data["product_substitute_id"]
 
+            user_id = request.user.id
+            UserProduct.objects.get(id=product_substitute_id, user_id=user_id).delete()
+            return redirect(reverse("my_substitutes"))
 
-@login_required
-def delete_substitute(request, couple_id):
-    """The saved substitute deletion view, handling deletion requests
-    :param request: provided by Django
-    :param couple_id: the substitutes couple (product+its substitute) to delete, for logged on user
-    """
-    user_id = request.user.id
-    UserProduct.objects.get(id=couple_id, user_id=user_id).delete()
-    return redirect(reverse("my_substitutes"))
+    else:
+        user_id = request.user.id
+        saved_substitutes = UserProduct.objects.filter(user_id=user_id)
+
+        return render(request, "app/saved_substitutes.html", {
+            "substitutes": saved_substitutes,
+            "search_form": SearchForm()
+        })
 
 
 def compute_similarities(products, search_term):

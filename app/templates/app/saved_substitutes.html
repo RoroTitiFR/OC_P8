@@ -4,6 +4,7 @@
 
 {% block content %}
     <script src="{% static "js/substitutes.js" %}"></script>
+    <script src="{% static "js/saved_substitutes.js" %}"></script>
 
     <section class="section">
         <div class="container">
@@ -38,10 +39,8 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="card-footer">
-                            <a class="card-footer-item has-text-danger" href="{% url "delete_substitute" couple_id=substitute.id %}">
+                            <a class="button is-danger is-fullwidth __open-modal-confirm" data-id="{{ substitute.id }}">
                                 <span class="icon">
                                     <i class="fas fa-trash"></i>
                                 </span>
@@ -57,6 +56,29 @@
             {% endif %}
         </div>
     </section>
+
+    <div class="__modal-confirm modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Confirmation</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+
+            <section class="modal-card-body">
+                <p>Souhaitez-vous vraiment supprimer cet enregistrement ?</p>
+            </section>
+
+            <form method="post" action="{% url "my_substitutes" %}">
+                <footer class="modal-card-foot">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_substitute_id">
+                    <button type="submit" class="button is-primary __confirm-delete">Oui</button>
+                    <a class="button __cancel-delete">Non</a>
+                </footer>
+            </form>
+        </div>
+    </div>
 
     {% include "app/product_details_modal.html" %}
 {% endblock %}

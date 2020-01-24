@@ -52,7 +52,6 @@ $(document).ready(function () {
         axios
             .post("", formData)
             .then(function (response) {
-                console.log(response);
                 $(that).replaceWith(response.data);
             })
             .catch(function (error) {

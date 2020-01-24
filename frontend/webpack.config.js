@@ -7,6 +7,7 @@ module.exports = {
     entry: {
         "js/app": "./js/app.js",
         "js/substitutes": "./js/substitutes.js",
+        "js/saved_substitutes": "./js/saved_substitutes.js",
         "css/animate": "./scss/animate.scss",
         "css/bulma": "./scss/bulma.scss",
         "css/mini-tailwind": "./scss/tailwind.scss"
