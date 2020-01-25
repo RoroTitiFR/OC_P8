@@ -36,7 +36,7 @@ virtualenv venv
 pip install -r requirements.txt
 ```
 
-- Connect to the database by changing the settings on pur_beurre/settings.py, in DATABASES
+- Connect to the database by changing the settings at ``pur_beurre/settings.py``, in DATABASES settings
 
 - Populate the database by running :
 ````
