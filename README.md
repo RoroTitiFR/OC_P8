@@ -43,6 +43,11 @@ pip install -r requirements.txt
 python manage.py off_download
 ````
 
+- Compile frontend assets (make sure you have [NodeJS](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/) installed)
+````
+yarn build
+````
+
 ### Run Pur Beurre
 
 - You can now start Pur Beurre with the following commands. Run them from the root of the source code directory.
