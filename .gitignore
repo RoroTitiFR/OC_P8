@@ -442,3 +442,6 @@ venv.bak/
 pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/node,macos,django,python,virtualenv,pycharm+iml,jetbrains+all
+
+assets/js
+assets/css
