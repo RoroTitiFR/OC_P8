@@ -1,8 +1,9 @@
 {
+  "license": "WTFPL",
   "engines": {
     "yarn": "1.x"
   },
   "scripts": {
-    "postinstall": "cd frontend && yarn"
+    "postinstall": "cd frontend && yarn && yarn build"
   }
 }
